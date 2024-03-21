@@ -11,7 +11,12 @@ fi
 
 export EDITOR="$VISUAL"
 
-export PAGER=${PAGER:-less}
+if (( $+commands[most] )); then
+  export PAGER=${PAGER:-most}
+else
+  export PAGER=${PAGER:-less}
+fi
+
 export LANG=${LANG:-en_US.UTF-8}
 
 # Set the Less input preprocessor.
