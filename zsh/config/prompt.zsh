@@ -17,6 +17,8 @@ function prompt_starship_setup {
     (( $#configs )) && export STARSHIP_CONFIG=$configs[1]
   fi
 
+  export STARSHIP_CONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/starship/starship.toml
+
   # Initialize starship.
   if zstyle -t ':zsh:feature:prompt' 'use-cache'; then
     cached-eval 'starship-init-zsh' starship init zsh
