@@ -117,7 +117,9 @@ function zshrc-post {
   fi
 
   # Init completions.
-  (( $+functions[compinit] )) || mycompinit
+  if (( $+functions[mycompinit] )); then
+    mycompinit
+  fi
 
   # Finish profiling by calling zprof.
   [[ "$ZPROFRC" -eq 1 ]] && zprof
