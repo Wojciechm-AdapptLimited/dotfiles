@@ -25,5 +25,7 @@ return {
 		})
 
 		require("nvim-ts-autotag").setup()
+
+		vim.treesitter.language.register("bash", "zsh")
 	end,
 }
