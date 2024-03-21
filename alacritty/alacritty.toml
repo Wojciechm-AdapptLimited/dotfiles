@@ -1,11 +1,22 @@
 import = [
-	"~/.config/alacritty/themes/catppuccin-mocha.toml"
+	"$HOME/.config/alacritty/themes/catppuccin-mocha.toml"
 ]
 
-[window]
-decorations = 'None'
-startup_mode = 'Windowed'
+[font]
+size = 14.0
 
-[window.dimensions]
-columns=1000
-lines=400
+[font.bold]
+family = "CaskaydiaCove Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "CaskaydiaCove Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "CaskaydiaCove Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "CaskaydiaCove Nerd Font"
+style = "Regular"
