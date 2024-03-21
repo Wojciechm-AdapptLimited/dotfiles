@@ -38,4 +38,8 @@ function mycompinit {
   else
     compinit -d "$compdump"
   fi
+
+  autoload -U +X bashcompinit && bashcompinit
 }
+
+mycompinit
