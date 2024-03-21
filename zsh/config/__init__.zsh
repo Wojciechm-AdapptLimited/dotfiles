@@ -2,11 +2,6 @@
 # __init__: Run this first!
 #
 
-# Initialize zellij.
-if (( $+commands[zellij] )); then
-  eval "$(zellij setup --generate-auto-start zsh)"
-fi
-
 # Initialize profiling.
 [[ "$ZPROFRC" -ne 1 ]] || zmodload zsh/zprof
 alias zprofrc="ZPROFRC=1 zsh"
@@ -88,6 +83,11 @@ export KEYTIMEOUT=1
 
 # Run this at the very end.
 function zshrc-post {
+  # Initialize zellij.
+  if (( $+commands[zellij] )); then
+    eval "$(zellij setup --generate-auto-start zsh)"
+  fi
+
   # Init bindings.
   bindkey '^[OA' history-substring-search-up
   bindkey '^[OB' history-substring-search-down
