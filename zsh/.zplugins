@@ -1,0 +1,18 @@
+#
+# .zplugins.txt - antidote plugins file
+#
+
+# Software & Tools
+$ZSH_CUSTOM path:plugins/bat
+$ZSH_CUSTOM path:plugins/cargo
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/npm
+ohmyzsh/ohmyzsh path:plugins/fnm
+$ZSH_CUSTOM path:plugins/fzf
+
+# Utilities
+zsh-users/zsh-completions kind:fpath path:src
+zsh-users/zsh-autosuggestions
+zdharma-continuum/fast-syntax-highlighting
+$ZSH_CUSTOM path:plugins/fzf-tab-completion
+zsh-users/zsh-history-substring-search

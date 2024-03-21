@@ -1,0 +1,16 @@
+#compdef dotnet
+
+if [[ -d "$HOME/.dotnet/tools" ]]; then
+    export PATH="$PATH:$HOME/.dotnet/tools"
+fi
+
+# zsh parameter completion for the dotnet CLI
+
+_dotnet() 
+{
+  local completions=("$(dotnet complete "$words")")
+
+  [[ -n "$completions" ]] && compadd -- "${(ps:\n:)completions}"
+}
+
+_dotnet "$@"
