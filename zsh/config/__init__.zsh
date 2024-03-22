@@ -66,7 +66,7 @@ unset _brewcmd
 path=(
   $HOME/{,s}bin(N)
   $HOME/.local/{,s}bin(N)
-  $HOMEBREW_PREFIX/{,s}bin(N)
+  /opt/homebrew/{,s}bin(N)
   /usr/local/{,s}bin(N)
   /usr/{,s}bin(N)
   /{,s}bin(N)
