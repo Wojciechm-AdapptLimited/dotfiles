@@ -147,7 +147,8 @@ keybinds {
     shared_except "locked" {
         bind "Ctrl g" { SwitchToMode "Locked"; }
         bind "Ctrl q" { Quit; }
-        bind "Alt n" { NewPane; }
+        bind "Ctrl n" { NewPane; }
+        unbind "Alt n" { NewPane; }
         bind "Alt Left" { MoveFocusOrTab "Left"; }
         unbind "Alt h" { MoveFocusOrTab "Left"; }
         bind "Alt Right" { MoveFocusOrTab "Right"; }
@@ -168,7 +169,7 @@ keybinds {
         bind "Ctrl p" { SwitchToMode "Pane"; }
     }
     shared_except "resize" "locked" {
-        bind "Ctrl n" { SwitchToMode "Resize"; }
+        bind "Ctrl r" { SwitchToMode "Resize"; }
     }
     shared_except "scroll" "locked" {
         bind "Ctrl s" { SwitchToMode "Scroll"; }
