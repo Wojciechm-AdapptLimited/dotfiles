@@ -5,7 +5,9 @@
 # Software & Tools
 $ZSH_CUSTOM path:plugins/bat
 $ZSH_CUSTOM path:plugins/cargo
+$ZSH_CUSTOM path:plugins/dotnet
 $ZSH_CUSTOM path:plugins/fnm
+$ZSH_CUSTOM path:plugins/go
 ohmyzsh/ohmyzsh path:plugins/git
 $ZSH_CUSTOM path:plugins/fzf
 
