@@ -155,35 +155,26 @@ return {
 	},
 
 	lsp_servers = {
-		bashls = {}, -- bash
-		clangd = {}, -- c/c++
-		cssls = {}, -- css
-		dockerls = {}, -- dockerfiles
-		gopls = {}, -- go
-		html = {}, -- html
-		htmx = {}, -- htmx
-		jdtls = {}, -- java
-		jsonls = {}, -- json
-		ltex = {}, -- latex
-		lua_ls = {
-			settings = {
-				Lua = {
-					diagnostics = {
-						-- Get the language server to recognize the `vim` global
-						globals = { "vim" },
-					},
-				},
-			},
-		}, -- lua
-		marksman = {}, -- markdown
-		omnisharp = {}, -- c#/f#
-		pyright = {}, -- python
-		r_language_server = {}, -- r
-		rust_analyzer = {}, -- rust
-		sqlls = {}, -- sql
-		texlab = {}, -- latex
-		tsserver = {}, -- js/ts
-		yamlls = {}, -- yaml
+		"bashls",
+		"clangd",
+		"cssls",
+		"dockerls",
+		"gopls",
+		"html",
+		"htmx",
+		"jdtls",
+		"jsonls",
+		"ltex",
+		"lua_ls",
+		"marksman",
+		"omnisharp",
+		"pyright",
+		"r_language_server",
+		"rust_analyzer",
+		"sqlls",
+		"texlab",
+		"tsserver",
+		"yamlls",
 	},
 
 	tools = {
