@@ -58,3 +58,14 @@ autocmd({ "InsertEnter", "WinLeave" }, {
 	command = "set nocursorline",
 	group = cursor_grp,
 })
+
+autocmd({ "BufNewFile", "Bufread" }, {
+	desc = "Set the razor filetype",
+	pattern = {
+		"*.cshtml",
+		"*.razor",
+	},
+	callback = function()
+		vim.bo.filetype = "html.cshtml.razor"
+	end,
+})
