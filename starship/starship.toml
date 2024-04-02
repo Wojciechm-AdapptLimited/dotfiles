@@ -1,5 +1,6 @@
 format = "$os$all"
 palette = "catppuccin_mocha"
+command_timeout = 2000
 
 [aws]
 symbol = "  "
