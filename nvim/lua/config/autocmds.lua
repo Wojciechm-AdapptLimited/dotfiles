@@ -59,7 +59,7 @@ autocmd({ "InsertEnter", "WinLeave" }, {
 	group = cursor_grp,
 })
 
-autocmd({ "BufNewFile", "Bufread" }, {
+autocmd({ "BufNewFile", "BufRead" }, {
 	desc = "Set the razor filetype",
 	pattern = {
 		"*.cshtml",
