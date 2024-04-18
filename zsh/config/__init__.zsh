@@ -88,6 +88,11 @@ function zshrc-post {
     eval "$(zellij setup --generate-auto-start zsh)"
   fi
 
+  # Initialize pyenv
+  if (( $+commands[pyenv] )); then
+    eval "$(pyenv init --path)"
+  fi
+
   # Init bindings.
   bindkey '^[OA' history-substring-search-up
   bindkey '^[OB' history-substring-search-down
