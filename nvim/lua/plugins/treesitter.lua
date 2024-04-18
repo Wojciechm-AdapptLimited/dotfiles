@@ -27,6 +27,5 @@ return {
 		require("nvim-ts-autotag").setup()
 
 		vim.treesitter.language.register("bash", "zsh")
-		vim.treesitter.language.register("html", "html.cshtml.razor")
 	end,
 }
