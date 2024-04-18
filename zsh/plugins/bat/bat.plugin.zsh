@@ -4,7 +4,6 @@ if (( ! $+commands[bat] )); then
 fi
 
 alias cat='bat'
-alias grep='batgrep'
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
