@@ -2621,7 +2621,7 @@ __docker_context_subcommand() {
 # BO compose
 
 __docker_compose_q() {
-    docker_compose 2>/dev/null $compose_options "$@"
+    docker "compose" 2>/dev/null $compose_options "$@"
 }
 
 # All services defined in docker-compose.yml
@@ -2715,7 +2715,7 @@ __docker_compose_commands() {
 }
 
 __docker_compose_subcommand() {
-    local opts_help opts_force_recreate opts_no_recreate opts_no_build opts_remove_orphans opts_timeout opts_no_color opts_no_deps opts_dry_run
+    local opts_help opts_force_recreate opts_no_recreate opts_no_build opts_remove_orphans opts_timeout opts_no_color opts_no_deps opts_dry_run opts_index
 
     opts_help='(: -)--help[Print usage]'
     opts_force_recreate="(--no-recreate)--force-recreate[Recreate containers even if their configuration and image haven't changed. Incompatible with --no-recreate.]"
@@ -2726,7 +2726,7 @@ __docker_compose_subcommand() {
     opts_no_color='--no-color[Produce monochrome output.]'
     opts_no_deps="--no-deps[Don't start linked services.]"
     opts_dry_run='--dry-run[Execute command in dry run mode]'
-    
+    opts_index='--index=[Index of the container if service has multiple replicas]:index: '
 
     integer ret=1
 
@@ -2735,8 +2735,8 @@ __docker_compose_subcommand() {
             _arguments \
                 $opts_help \
                 $opts_dry_run \
+                $opts_index \
                 '--detach-keys=[Override the key sequence for detaching a container]:key sequence: ' \
-                '--index[Index of the container if service has multiple replicas]:index: ' \
                 '--no-stdin[Do not attach STDIN.]' \
                 '--sig-proxy[Proxy all received signals to the process (default: true)]' \
             ;;
@@ -2778,9 +2778,9 @@ __docker_compose_subcommand() {
             _arguments \
                 $opts_help \
                 $opts_dry_run \
+                $opts_index \
                 '(--archive -a)'{--archive,-a}'[Archive mode (copy all uid/gid information)]' \
                 '(--follow -L)'{--follow,-L}'[Always follow symbol link in SRC_PATH]' \
-                '--index[Index of the container if service has multiple replicas]:index: ' \
             ;;
         (create)
             _arguments \
@@ -2801,109 +2801,148 @@ __docker_compose_subcommand() {
                 $opts_help \
                 $opts_timeout \
                 $opts_dry_run \
+                $opts_remove_orphans \
                 "--rmi[Remove images used by services. \"local\" remove only images that don't have a custom tag (\"local\"|\"all\")]:type:(all local)" \
-                '(-v --volumes)'{-v,--volumes}"[Remove named volumes declared in the \`volumes\` section of the Compose file and anonymous volumes attached to containers.]" \
-                $opts_remove_orphans && ret=0
+                '(-v --volumes)'{-v,--volumes}"[Remove named volumes declared in the \`volumes\` section of the Compose file and anonymous volumes attached to containers.]" && ret=0
             ;;
         (events)
             _arguments \
                 $opts_help \
+                $opts_dry_run \
                 '--json[Output events as a stream of json objects]' \
                 '*:services:__docker_compose_services' && ret=0
             ;;
         (exec)
             _arguments \
                 $opts_help \
+                $opts_dry_run \
+                $opts_index \
                 '-d[Detached mode: Run command in the background.]' \
                 '--privileged[Give extended privileges to the process.]' \
                 '(-u --user)'{-u,--user=}'[Run the command as this user.]:username:_users' \
-                '-T[Disable pseudo-tty allocation. By default `docker compose exec` allocates a TTY.]' \
-                '--index=[Index of the container if there are multiple instances of a service \[default: 1\]]:index: ' \
-                '*'{-e,--env}'[KEY=VAL Set an environment variable (can be used multiple times)]:environment variable KEY=VAL: ' \
-                '(-w --workdir)'{-w,--workdir=}'[Working directory inside the container]:workdir: ' \
+                '(-T --no-TTY)'{-T,--no-TTY}'[Disable pseudo-tty allocation. By default `docker compose exec` allocates a TTY.]' \
+                '*'{-e,--env}'[Set an environment variable (can be used multiple times)]:environment variable KEY=VAL: ' \
+                '(-w --workdir)'{-w,--workdir=}'[Working directory inside the container]:workdir:' \
                 '(-):running services:__docker_compose_runningservices' \
                 '(-):command: _command_names -e' \
                 '*::arguments: _normal' && ret=0
             ;;
-        (help)
-            _arguments ':subcommand:__docker_compose_commands' && ret=0
-            ;;
         (images)
             _arguments \
-            $opts_help \
-            '-q[Only display IDs]' \
-            '*:services:__docker_compose_services' && ret=0
+                $opts_help \
+                $opts_dry_run \
+                '(-q --quiet)'{-q,--quiet}'[Only display IDs]' \
+                '--format=[Format the output. Values: \[table | json\] (default \"table\")]:format:(table json)' \
+                '*:services:__docker_compose_services' && ret=0
             ;;
         (kill)
             _arguments \
                 $opts_help \
-                '-s[SIGNAL to send to the container. Default signal is SIGKILL.]:signal:_signals' \
+                $opts_dry_run \
+                $opts_remove_orphans \
+                '(-s --signal)'{-s,--signal=}'[SIGNAL to send to the container. Default signal is SIGKILL.]:signal:_signals' \
                 '*:running services:__docker_compose_runningservices' && ret=0
             ;;
         (logs)
             _arguments \
                 $opts_help \
-                '(-f --follow)'{-f,--follow}'[Follow log output]' \
+                $opts_dry_run \
                 $opts_no_color \
-                '--tail=[Number of lines to show from the end of the logs for each container.]:number of lines: ' \
+                $opts_index \
+                "--no-log-prefix[Don't print prefix in logs]" \
+                '(-f --follow)'{-f,--follow}'[Follow log output]' \
+                '--since=[Show logs since timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)]:timestamp: ' \
+                '(-n --tail)'{-n,--tail=}'[Number of lines to show from the end of the logs for each container.]:number of lines: ' \
                 '(-t --timestamps)'{-t,--timestamps}'[Show timestamps]' \
+                '--until=[Show logs before a timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)]:timestamp: ' \
                 '*:services:__docker_compose_services' && ret=0
+            ;;
+        (ls)
+            _arguments \
+                $opts_help \
+                $opts_dry_run \
+                '--filter[Filter services by a property (supported filters: status)]:<filtername>=<value>:' \
+                '--format=[Format the output]:format:(table json)' \
+                '(-q --quiet)'{-q,--quiet}'[Only display IDs]' \
             ;;
         (pause)
             _arguments \
                 $opts_help \
+                $opts_dry_run \
                 '*:running services:__docker_compose_runningservices' && ret=0
             ;;
         (port)
             _arguments \
                 $opts_help \
-                '--protocol=[tcp or udp \[default: tcp\]]:protocol:(tcp udp)' \
-                '--index=[index of the container if there are multiple instances of a service \[default: 1\]]:index: ' \
+                $opts_dry_run \
+                $opts_index \
+                '--protocol=[tcp or udp \[default: "tcp"\]]:protocol:(tcp udp)' \
                 '1:running services:__docker_compose_runningservices' \
                 '2:port:_ports' && ret=0
             ;;
         (ps)
             _arguments \
                 $opts_help \
-                '-q[Only display IDs]' \
-                '--filter KEY=VAL[Filter services by a property]:<filtername>=<value>:' \
+                $opts_dry_run \
+                '(-a --all)'{-a,--all}'[Show all stopped containers (including those created by the run command)]' \
+                '(-q --quiet)'{-q,--quiet}'[Only display IDs]' \
+                '--filter[Filter services by a property (supported filters: status)]:<filtername>=<value>:' \
+                '--format[Format output using a custom template]:template: ' \
+                "--no-trunc[Don't truncate output]" \
+                "--orphans[Include orphaned services (not declared by project) (default true)]" \
+                '--services[Display services]' \
+                '--status=[Filter services by status]:status:(paused restarting removing running dead created exited)' \
                 '*:services:__docker_compose_services' && ret=0
             ;;
         (pull)
             _arguments \
                 $opts_help \
+                $opts_dry_run \
+                '--ignore-buildable[Ignore images that can be built]' \
                 '--ignore-pull-failures[Pull what it can and ignores images with pull failures.]' \
-                '--no-parallel[Disable parallel pulling]' \
                 '(-q --quiet)'{-q,--quiet}'[Pull without printing progress information]' \
                 '--include-deps[Also pull services declared as dependencies]' \
+                '--policy=[Apply pull policy]:policy:(missing always)' \
                 '*:services:__docker_compose_services_from_image' && ret=0
             ;;
         (push)
             _arguments \
                 $opts_help \
+                $opts_dry_run \
+                '--include-deps[Also push images of services declared as dependencies]' \
+                '(-q --quiet)'{-q,--quiet}'[Push without printing progress information]' \
                 '--ignore-push-failures[Push what it can and ignores images with push failures.]' \
                 '*:services:__docker_compose_services' && ret=0
             ;;
         (rm)
             _arguments \
                 $opts_help \
+                $opts_dry_run \
                 '(-f --force)'{-f,--force}"[Don't ask to confirm removal]" \
-                '-v[Remove any anonymous volumes attached to containers]' \
+                '(-s --stop)'{-s,--stop}'[Stop the containers, if required, before removing]' \
+                '(-v --volumes)'{-v,--volumes}'[Remove any anonymous volumes attached to containers]' \
                 '*:stopped services:__docker_compose_stoppedservices' && ret=0
             ;;
         (run)
             _arguments \
                 $opts_help \
                 $opts_no_deps \
-                '-d[Detached mode: Run container in the background, print new container name.]' \
-                '*-e[KEY=VAL Set an environment variable (can be used multiple times)]:environment variable KEY=VAL: ' \
+                $opts_dry_run \
+                $opts_remove_orphans \
+                '--build[Build image before starting container.]' \
+                '--cap-add=[Add Linux capabilities]:capability: ' \
+                '--cap-drop=[Drop Linux capabilities]:capability: ' \
+                '(-d --detach)'{-d,--detach}'[Run container in background and print container ID]' \
+                '*'{-e,--env}'[KEY=VAL Set an environment variable (can be used multiple times)]:environment variable KEY=VAL: ' \
                 '*'{-l,--label}'[KEY=VAL Add or override a label (can be used multiple times)]:label KEY=VAL: ' \
                 '--entrypoint[Overwrite the entrypoint of the image.]:entry point: ' \
+                '(-i --interactive)'{-i,--interactive}'[Keep STDIN open even if not attached (default true)]' \
                 '--name=[Assign a name to the container]:name: ' \
                 '(-p --publish)'{-p,--publish=}"[Publish a container's port(s) to the host]" \
-                '--rm[Remove container after run. Ignored in detached mode.]' \
-                "--service-ports[Run command with the service's ports enabled and mapped to the host.]" \
-                '-T[Disable pseudo-tty allocation. By default `docker compose run` allocates a TTY.]' \
+                '--quiet-pull[Pull without printing progress information]' \
+                '--rm[Automatically remove the container when it exits]' \
+                "(-P --service-ports)"{-P,--service-ports}"[Run command with the service's ports enabled and mapped to the host.]" \
+                '(-T --no-TTY)'{-T,--no-TTY}'[Disable pseudo-tty allocation. By default `docker compose run` allocates a TTY.]' \
                 '(-u --user)'{-u,--user=}'[Run as specified username or uid]:username or uid:_users' \
                 '(-v --volume)*'{-v,--volume=}'[Bind mount a volume]:volume: ' \
                 '(-w --workdir)'{-w,--workdir=}'[Working directory inside the container]:workdir: ' \
@@ -2915,52 +2954,95 @@ __docker_compose_subcommand() {
         (scale)
             _arguments \
                 $opts_help \
-                $opts_timeout \
+                $opts_dry_run \
+                $opts_no_deps \
                 '*:running services:__docker_compose_runningservices' && ret=0
             ;;
         (start)
             _arguments \
                 $opts_help \
+                $opts_dry_run \
                 '*:stopped services:__docker_compose_stoppedservices' && ret=0
+            ;;
+        (stats)
+            _arguments \
+                $opts_help \
+                $opts_dry_run \
+                '--format=[Format the output using the given Go template]:template: ' \
+                '--no-stream[Disable streaming stats and only pull the first result]' \
+                "--no-trunc[Don't truncate output]" \
+                '*:running services:__docker_compose_runningservices' && ret=0
             ;;
         (stop|restart)
             _arguments \
                 $opts_help \
+                $opts_dry_run \
                 $opts_timeout \
                 '*:running services:__docker_compose_runningservices' && ret=0
             ;;
         (top)
             _arguments \
                 $opts_help \
+                $opts_dry_run \
                 '*:running services:__docker_compose_runningservices' && ret=0
             ;;
         (unpause)
             _arguments \
                 $opts_help \
+                $opts_dry_run \
                 '*:paused services:__docker_compose_pausedservices' && ret=0
             ;;
         (up)
             _arguments \
                 $opts_help \
                 '(--abort-on-container-exit)-d[Detached mode: Run containers in the background, print new container names. Incompatible with --abort-on-container-exit and --attach-dependencies.]' \
+                '(--no-recreate)--always-recreate-deps[Recreate dependent containers. Incompatible with --no-recreate.]' \
                 $opts_no_color \
                 $opts_no_deps \
                 $opts_force_recreate \
                 $opts_no_recreate \
                 $opts_no_build \
+                $opts_dry_run \
+                $opts_remove_orphans \
+                "--no-attach=[Do not attach (stream logs) to the specified services]:service:__docker_compose_services" \
+                "--no-log-prefix[Don't print prefix in logs]" \
+                "--no-start[Don't start the services after creating them.]" \
                 "(--no-build)--build[Build images before starting containers.]" \
                 "(-d)--abort-on-container-exit[Stops all containers if any container was stopped. Incompatible with -d.]" \
                 "(-d)--attach-dependencies[Attach to dependent containers. Incompatible with -d.]" \
                 '(-t --timeout)'{-t,--timeout}"[Use this timeout in seconds for container shutdown when attached or when containers are already running. (default: 10)]:seconds: " \
+                '--pull[Pull images before starting containers. (default "missing")]:policy:(missing always never)' \
+                '--quiet-pull[Pull without printing progress information]' \
+                '(-V --renew-anon-volumes)'{-V,--renew-anon-volumes}'[Recreate anonymous volumes instead of retrieving data from the previous containers.]' \
                 '--scale[SERVICE=NUM Scale SERVICE to NUM instances. Overrides the `scale` setting in the Compose file if present.]:service scale SERVICE=NUM: ' \
                 '--exit-code-from=[Return the exit code of the selected service container. Implies --abort-on-container-exit]:service:__docker_compose_services' \
-                $opts_remove_orphans \
+                '--timestaps[Show timestamps]' \
+                '--wait[Wait for services to be running|healthy. Implies detached mode.]'
+                '--wait-timeout=[Maximum duration to wait for the project to be running|healthy]:seconds: ' \
+                '(-W --watch)'{-W,--watch}'[Watch source code and rebuild/refresh containers when files are updated]' \
                 '*:services:__docker_compose_services' && ret=0
             ;;
         (version)
             _arguments \
                 $opts_help \
+                $opts_dry_run \
+                "(-f --format)"{-f,--format=}"[Format the output]:format:(pretty json)" \
                 "--short[Shows only Compose's version number.]" && ret=0
+            ;;
+        (wait)
+            _arguments \
+                '*:services:__docker_compose_runningservices' \
+                $opts_help \
+                $opts_dry_run \
+                '--down-project[Drops project when the first container stops]' && ret=0
+            ;;
+        (watch)
+            _arguments \
+                $opts_help \
+                $opts_dry_run \
+                '--no-up[Do not build & start services before watching]' \
+                '--quiet[Hide build output]' \
+                '*:services:__docker_compose_services' && ret=0
             ;;
         (*)
             _message 'Unknown sub command' && ret=1
