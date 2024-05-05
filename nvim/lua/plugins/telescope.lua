@@ -43,7 +43,7 @@ return {
 				file_ignore_patterns = conf.ingnored_files,
 			},
 			pickers = {
-				find_files = { hidden = true },
+				find_files = { hidden = false },
 				oldfiles = { cwd_only = true },
 				buffers = {
 					ignore_current_buffer = true,
