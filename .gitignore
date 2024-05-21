@@ -2,3 +2,4 @@
 .zplugins.zsh
 .zcompdump
 .zcompcache/
+lazy-lock.json
