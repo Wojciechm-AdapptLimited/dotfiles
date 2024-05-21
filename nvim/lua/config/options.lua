@@ -192,11 +192,7 @@ return {
 		},
 
 		linters = {
-			cpp = { "cpplint" }, -- c/c+=
-			javascript = { "eslint_d" }, -- js/ts
-			gitcommit = { "commitlint" }, -- git commits
-			go = { "revive" }, -- go
-			python = { "ruff" },
+			gitcommit = { "commitlint" },
 		},
 	},
 }
