@@ -34,6 +34,7 @@ return {
 		local actions = require("telescope.actions")
 		local builtin = require("telescope.builtin")
 		local themes = require("telescope.themes")
+		local wk = require("which-key")
 
 		telescope.setup({
 			-- You can put your default mappings / updates / etc. in here
@@ -73,54 +74,49 @@ return {
 		pcall(telescope.load_extension, "fzf")
 		pcall(telescope.load_extension, "ui-select")
 
-		-- See `:help telescope.builtin`
-		local map = function(keys, func, desc)
-			vim.keymap.set("n", "<leader>" .. keys, func, { desc = desc })
-		end
-
-		-- Search Core (files, strings, buffers, commands)
-		map("<leader>", builtin.buffers, "[ ] Find existing buffers")
-		map("sf", builtin.find_files, "[S]earch [F]iles")
-		map("s.", builtin.oldfiles, "[S]earch Recent Files ('.' for repeat)")
-		map("sw", builtin.grep_string, "[S]earch current [W]ord")
-		map("ss", builtin.live_grep, "[S]earch [S]tring")
-		map("st", builtin.treesitter, "[S]earch [T]reesitter (function names, variables)")
-		map("s:", builtin.commands, "[S]earch [:]commands")
-		map("sr", builtin.registers, "[S]earch [R]egisters")
-
-		-- Search Meta (manuals, diagnostics, builtin,
-		map("sh", builtin.help_tags, "[S]earch [H]elp")
-		map("sk", builtin.keymaps, "[S]earch [K]eymaps")
-		map("sb", builtin.builtin, "[S]earch [B]uiltin")
-		map("sd", builtin.diagnostics, "[S]earch [D]iagnostics")
-
-		-- Search Git
-		map("sgc", builtin.git_commits, "[S]earch [G]it [C]ommits")
-		map("sgs", builtin.git_status, "[S]earch [G]it [S]tatus")
-		map("sgb", builtin.git_branches, "[S]earch [G]it [B]ranches")
-		map("sgt", builtin.git_stash, "[S]earch [G]it s[T]ash")
+		wk.register({
+			["<leader><leader>"] = { builtin.buffers, "Existing Buffers" },
+			["<leader>s"] = {
+				name = "[S]earch",
+				-- [S]earch Core
+				f = { builtin.find_files, "[F]iles" },
+				[":"] = { builtin.commands, "[:] (commands)" },
+				r = { builtin.registers, "[R]egisters" },
+				h = { builtin.help_tags, "[H]elp" },
+				k = { builtin.keymaps, "[K]eymaps" },
+				b = { builtin.builtin, "[B]uiltin" },
+				d = { builtin.diagnostics, "[D]iagnostics" },
+				n = {
+					function()
+						builtin.find_files({ cwd = vim.fn.stdpath("config") })
+					end,
+					"[N]eovim (config)",
+				},
+				s = {
+					-- [S]earch [S]tring (grep)
+					name = "[S]tring",
+					c = { builtin.grep_string, "[C]urrent" },
+					g = { builtin.live_grep, "[G]rep" },
+					b = { builtin.current_buffer_fuzzy_find, "[B]uffer" },
+				},
+				g = {
+					-- [S]earch [G]it
+					name = "[G]it",
+					c = { builtin.git_commits, "[C]ommits" },
+					s = { builtin.git_status, "[S]tatus" },
+					b = { builtin.git_branches, "[B]ranches" },
+					t = { builtin.git_stash, "s[T]ash" },
+				},
+			},
+		})
 
 		-- Slightly advanced example of overriding default behavior and theme
-		map("/", function()
-			-- You can pass additional configuration to telescope to change theme, layout, etc.
-			builtin.current_buffer_fuzzy_find(themes.get_dropdown({
-				winblend = 10,
-				previewer = false,
-			}))
-		end, "[/] Fuzzily search in current buffer")
-
-		-- Also possible to pass additional configuration options.
-		--  See `:help telescope.builtin.live_grep()` for information about particular keys
-		map("s/", function()
-			builtin.live_grep({
-				grep_open_files = true,
-				prompt_title = "Live Grep in Open Files",
-			})
-		end, "[S]earch by grep [/] in Open Files")
-
-		-- Shortcut for searching your neovim configuration files
-		map("sn", function()
-			builtin.find_files({ cwd = vim.fn.stdpath("config") })
-		end, "[S]earch [N]eovim files")
+		-- map("/", function()
+		-- 	-- You can pass additional configuration to telescope to change theme, layout, etc.
+		-- 	builtin.current_buffer_fuzzy_find(themes.get_dropdown({
+		-- 		winblend = 10,
+		-- 		previewer = false,
+		-- 	}))
+		-- end, "[/] Fuzzily search in current buffer")
 	end,
 }

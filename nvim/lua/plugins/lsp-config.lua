@@ -32,50 +32,71 @@ return {
 		autocmd("LspAttach", {
 			group = augroup("LspAttach", { clear = true }),
 			callback = function(event)
+				local wk = require("which-key")
+				local builtin = require("telescope.builtin")
+
 				local map = function(keys, func, desc)
 					vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 				end
 
-				-- Jump to the definition of the word under your cursor.
-				--  This is where a variable was first declared, or where a function is defined, etc.
-				--  To jump back, press <C-T>.
-				map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+				wk.register({
+					["<leader>g"] = {
+						name = "[G]oto",
 
-				-- Find references for the word under your cursor.
-				map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+						-- Jump to the definition of the word under your cursor.
+						--  This is where a variable was first declared, or where a function is defined, etc.
+						--  To jump back, press <C-T>.
+						d = { builtin.lsp_definitions, "[D]efinition" },
 
-				-- Jump to the implementation of the word under your cursor.
-				--  Useful when your language has ways of declaring types without an actual implementation.
-				map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+						-- WARN: This is not Goto Definition, this is Goto Declaration.
+						--  For example, in C this would take you to the header
+						D = { vim.lsp.buf.declaration, "[D]eclaration" },
 
-				-- Jump to the type of the word under your cursor.
-				--  Useful when you're not sure what type a variable is and you want to see
-				--  the definition of its *type*, not where it was *defined*.
-				map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+						-- Find references for the word under your cursor.
+						r = { builtin.lsp_references, "[R]eferences" },
 
-				-- Fuzzy find all the symbols in your current document.
-				--  Symbols are things like variables, functions, types, etc.
-				map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+						-- Jump to the implementation of the word under your cursor.
+						--  Useful when your language has ways of declaring types without an actual implementation.
+						i = { builtin.lsp_implementations, "[I]mplementation" },
 
-				-- Fuzzy find all the symbols in your current workspace
-				--  Similar to document symbols, except searches over your whole project.
-				map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+						-- Jump to the type of the word under your cursor.
+						--  Useful when you're not sure what type a variable is and you want to see
+						--  the definition of its *type*, not where it was *defined*.
+						t = { builtin.lsp_type_definitions, "[T]ype" },
 
-				-- Rename the variable under your cursor
-				--  Most Language Servers support renaming across files, etc.
-				map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+						-- Find all supertypes of the word under your cursor.
+						h = { vim.lsp.buf.typehierarchy, "[H]ierarchy" },
+					},
+					["<leader>c"] = {
+						name = "[C]ode",
 
-				-- Execute a code action, usually your cursor needs to be on top of an error
-				-- or a suggestion from your LSP for this to activate.
-				map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+						-- Rename the variable under your cursor
+						--  Most Language Servers support renaming across files, etc.
+						r = { vim.lsp.buf.rename, "[R]ename" },
+
+						-- Execute a code action, usually your cursor needs to be on top of an error
+						-- or a suggestion from your LSP for this to activate.
+						a = { vim.lsp.buf.code_action, "[A]ction" },
+					},
+					["<leader>sc"] = {
+						name = "[C]ode",
+
+						-- Fuzzy find all the symbols in your current document.
+						--  Symbols are things like variables, functions, types, etc.
+						d = { builtin.lsp_document_symbols, "[D]ocument" },
+
+						-- Fuzzy find all the symbols in your current workspace
+						--  Similar to document symbols, except searches over your whole project.
+						w = { builtin.lsp_dynamic_workspace_symbols, "[W]orkspace" },
+
+						-- Fuzzy find all the symbols in your current workspace using treesitter
+						t = { builtin.treesitter, "[T]reesitter" },
+					},
+				})
 
 				-- Opens a popup that displays documentation about the word under your cursor
 				--  See `:help K` for why this keymap
 				map("K", vim.lsp.buf.hover, "Hover Documentation")
-
-				-- WARN: This is not Goto Definition, this is Goto Declaration.
-				--  For example, in C this would take you to the header
-				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 				-- The following two autocommands are used to highlight references of the
 				-- word under your cursor when your cursor rests there for a little while.

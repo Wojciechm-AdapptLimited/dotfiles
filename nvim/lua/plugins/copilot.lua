@@ -42,6 +42,6 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<leader>ce", "<cmd>Copilot enable<CR>", { desc = "[C]opilot [E]nable" })
+		vim.keymap.set("n", "<leader>cc", "<cmd>Copilot enable<CR>", { desc = "[C]opilot" })
 	end,
 }

@@ -18,8 +18,8 @@ map("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- buffer keymaps
-map("n", "<tab>", "<cmd>bnext<cr>", { desc = "Move to the next buffer" })
-map("n", "<S-tab>", "<cmd>bprevious<cr>", { desc = "Move to the previous buffer" })
-map("n", "<leader>bD", "<cmd>%bd|e#|bd#<cr>", { desc = "Close all but the current buffer" })
-map("n", "<leader>bd", "<cmd>Bdelete<cr>", { desc = "Close the current buffer" })
-map("n", "<leader><tab>", "<cmd>e#<cr>", { desc = "Move to the last visited buffer" })
+-- map("n", "<tab>", "<cmd>bnext<cr>", { desc = "Move to the next buffer" })
+-- map("n", "<S-tab>", "<cmd>bprevious<cr>", { desc = "Move to the previous buffer" })
+-- map("n", "<leader>bD", "<cmd>%bd|e#|bd#<cr>", { desc = "Close all but the current buffer" })
+-- map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Close the current buffer" })
+-- map("n", "<leader>bl", "<cmd>e#<cr>", { desc = "Move to the last visited buffer" })
