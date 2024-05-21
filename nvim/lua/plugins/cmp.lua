@@ -5,6 +5,7 @@ local conf = vim.g.config
 return {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
+	branch = "main",
 	dependencies = {
 		-- Snippet Engine & its associated nvim-cmp source
 		{
