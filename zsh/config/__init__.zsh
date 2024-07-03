@@ -127,6 +127,8 @@ function zshrc-post {
     fi
   fi
 
+  mycompinit
+
   # Finish profiling by calling zprof.
   [[ "$ZPROFRC" -eq 1 ]] && zprof
   [[ -v ZPROFRC ]] && unset ZPROFRC

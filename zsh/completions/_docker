@@ -3017,7 +3017,7 @@ __docker_compose_subcommand() {
                 '--scale[SERVICE=NUM Scale SERVICE to NUM instances. Overrides the `scale` setting in the Compose file if present.]:service scale SERVICE=NUM: ' \
                 '--exit-code-from=[Return the exit code of the selected service container. Implies --abort-on-container-exit]:service:__docker_compose_services' \
                 '--timestaps[Show timestamps]' \
-                '--wait[Wait for services to be running|healthy. Implies detached mode.]'
+                '--wait[Wait for services to be running|healthy. Implies detached mode.]' \
                 '--wait-timeout=[Maximum duration to wait for the project to be running|healthy]:seconds: ' \
                 '(-W --watch)'{-W,--watch}'[Watch source code and rebuild/refresh containers when files are updated]' \
                 '*:services:__docker_compose_services' && ret=0

@@ -42,4 +42,3 @@ function mycompinit {
   autoload -U +X bashcompinit && bashcompinit
 }
 
-mycompinit
