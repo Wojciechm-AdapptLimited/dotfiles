@@ -10,8 +10,8 @@ return {
 	branch = "master",
 	dependencies = {
 		-- Automatically install LSPs and related tools to stdpath for neovim
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
+		{ "williamboman/mason.nvim", branch = "main" },
+		{ "williamboman/mason-lspconfig.nvim", branch = "main" },
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 		-- Useful status updates for LSP.
