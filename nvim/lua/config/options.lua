@@ -180,7 +180,13 @@ return {
 	tools = {
 		formatters = {
 			python = { "black" },
-			javascript = { "prettierd" }, -- html/css/js/ts/jsx/json/markdown/yaml
+			javascript = { "prettierd" }, -- html/css/js/ts/jsx/json/markdown
+			html = { "prettierd" },
+			css = { "prettierd" },
+			typescript = { "prettierd" },
+			javascriptreact = { "prettierd" },
+			typescriptreact = { "prettierd" },
+			markdown = { "prettierd" },
 			lua = { "stylua" },
 			bash = { "shfmt" },
 			buf = { "buf" }, -- protocol buffers

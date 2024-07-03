@@ -1,5 +1,6 @@
 return {
 	"ray-x/go.nvim",
+	branch = "master",
 	dependencies = { -- optional packages
 		"ray-x/guihua.lua",
 		"neovim/nvim-lspconfig",
