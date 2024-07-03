@@ -7,6 +7,7 @@ local augroup = vim.api.nvim_create_augroup
 return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
+	branch = "master",
 	dependencies = {
 		-- Automatically install LSPs and related tools to stdpath for neovim
 		"williamboman/mason.nvim",
