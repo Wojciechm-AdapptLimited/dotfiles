@@ -1,7 +1,6 @@
 return {
 	"zbirenbaum/copilot.lua",
 	build = ":Copilot auth",
-	event = "InsertEnter",
 
 	dependencies = {
 		{
@@ -42,6 +41,6 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<leader>cc", "<cmd>Copilot enable<CR>", { desc = "[C]opilot" })
+		vim.keymap.set("n", "<leader>cc", "<cmd>Copilot attach<CR>", { desc = "[C]opilot" })
 	end,
 }
