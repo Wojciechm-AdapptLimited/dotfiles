@@ -40,59 +40,58 @@ return {
 					vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 				end
 
-				wk.register({
-					["<leader>g"] = {
-						name = "[G]oto",
+				wk.add({
+					{ "<leader>g", group = "[G]oto" },
 
-						-- Jump to the definition of the word under your cursor.
-						--  This is where a variable was first declared, or where a function is defined, etc.
-						--  To jump back, press <C-T>.
-						d = { builtin.lsp_definitions, "[D]efinition" },
+					-- Jump to the definition of the word under your cursor.
+					--  This is where a variable was first declared, or where a function is defined, etc.
+					--  To jump back, press <C-T>.
+					{ "<leader>gd", builtin.lsp_definitions, desc = "[D]efinition" },
 
-						-- WARN: This is not Goto Definition, this is Goto Declaration.
-						--  For example, in C this would take you to the header
-						D = { vim.lsp.buf.declaration, "[D]eclaration" },
+					-- WARN: This is not Goto Definition, this is Goto Declaration.
+					--  For example, in C this would take you to the header
+					{ "<leader>gD", vim.lsp.buf.declaration, desc = "[D]eclaration" },
 
-						-- Find references for the word under your cursor.
-						r = { builtin.lsp_references, "[R]eferences" },
+					-- Find references for the word under your cursor.
+					{ "<leader>gr", builtin.lsp_references, desc = "[R]eferences" },
 
-						-- Jump to the implementation of the word under your cursor.
-						--  Useful when your language has ways of declaring types without an actual implementation.
-						i = { builtin.lsp_implementations, "[I]mplementation" },
+					-- Jump to the implementation of the word under your cursor.
+					--  Useful when your language has ways of declaring types without an actual implementation.
+					{ "<leader>gi", builtin.lsp_implementations, desc = "[I]mplementation" },
 
-						-- Jump to the type of the word under your cursor.
-						--  Useful when you're not sure what type a variable is and you want to see
-						--  the definition of its *type*, not where it was *defined*.
-						t = { builtin.lsp_type_definitions, "[T]ype" },
+					-- Jump to the type of the word under your cursor.
+					--  Useful when you're not sure what type a variable is and you want to see
+					--  the definition of its *type*, not where it was *defined*.
+					{ "<leader>gt", builtin.lsp_type_definitions, desc = "[T]ype" },
 
-						-- Find all supertypes of the word under your cursor.
-						h = { vim.lsp.buf.typehierarchy, "[H]ierarchy" },
-					},
-					["<leader>c"] = {
-						name = "[C]ode",
+					-- Find all supertypes of the word under your cursor.
+					{ "<leader>gh", vim.lsp.buf.typehierarchy, desc = "[H]ierarchy" },
+				})
 
-						-- Rename the variable under your cursor
-						--  Most Language Servers support renaming across files, etc.
-						r = { vim.lsp.buf.rename, "[R]ename" },
+				wk.add({
+					{ "<leader>c", group = "[C]ode" },
 
-						-- Execute a code action, usually your cursor needs to be on top of an error
-						-- or a suggestion from your LSP for this to activate.
-						a = { vim.lsp.buf.code_action, "[A]ction" },
-					},
-					["<leader>sc"] = {
-						name = "[C]ode",
+					-- Rename the variable under your cursor
+					--  Most Language Servers support renaming across files, etc.
+					{ "<leader>cr", vim.lsp.buf.rename, desc = "[R]ename" },
 
-						-- Fuzzy find all the symbols in your current document.
-						--  Symbols are things like variables, functions, types, etc.
-						d = { builtin.lsp_document_symbols, "[D]ocument" },
+					-- Execute a code action, usually your cursor needs to be on top of an error
+					-- or a suggestion from your LSP for this to activate.
+					{ "<leader>ca", vim.lsp.buf.code_action, desc = "[A]ction" },
+				})
 
-						-- Fuzzy find all the symbols in your current workspace
-						--  Similar to document symbols, except searches over your whole project.
-						w = { builtin.lsp_dynamic_workspace_symbols, "[W]orkspace" },
+				wk.add({
+					{ "<leader>sc", group = "[C]ode" },
+					-- Fuzzy find all the symbols in your current document.
+					--  Symbols are things like variables, functions, types, etc.
+					{ "<leader>scd", builtin.lsp_document_symbols, desc = "[D]ocument" },
 
-						-- Fuzzy find all the symbols in your current workspace using treesitter
-						t = { builtin.treesitter, "[T]reesitter" },
-					},
+					-- Fuzzy find all the symbols in your current workspace
+					--  Similar to document symbols, except searches over your whole project.
+					{ "<leader>scw", builtin.lsp_dynamic_workspace_symbols, desc = "[W]orkspace" },
+
+					-- Fuzzy find all the symbols in your current workspace using treesitter
+					{ "<leader>sct", builtin.treesitter, desc = "[T]reesitter" },
 				})
 
 				-- Opens a popup that displays documentation about the word under your cursor

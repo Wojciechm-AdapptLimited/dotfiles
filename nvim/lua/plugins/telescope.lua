@@ -74,40 +74,38 @@ return {
 		pcall(telescope.load_extension, "fzf")
 		pcall(telescope.load_extension, "ui-select")
 
-		wk.register({
-			["<leader><leader>"] = { builtin.buffers, "Existing Buffers" },
-			["<leader>s"] = {
-				name = "[S]earch",
-				-- [S]earch Core
-				f = { builtin.find_files, "[F]iles" },
-				[":"] = { builtin.commands, "[:] (commands)" },
-				r = { builtin.registers, "[R]egisters" },
-				h = { builtin.help_tags, "[H]elp" },
-				k = { builtin.keymaps, "[K]eymaps" },
-				b = { builtin.builtin, "[B]uiltin" },
-				d = { builtin.diagnostics, "[D]iagnostics" },
-				n = {
-					function()
-						builtin.find_files({ cwd = vim.fn.stdpath("config") })
-					end,
-					"[N]eovim (config)",
-				},
-				s = {
-					-- [S]earch [S]tring (grep)
-					name = "[S]tring",
-					c = { builtin.grep_string, "[C]urrent" },
-					g = { builtin.live_grep, "[G]rep" },
-					b = { builtin.current_buffer_fuzzy_find, "[B]uffer" },
-				},
-				g = {
-					-- [S]earch [G]it
-					name = "[G]it",
-					c = { builtin.git_commits, "[C]ommits" },
-					s = { builtin.git_status, "[S]tatus" },
-					b = { builtin.git_branches, "[B]ranches" },
-					t = { builtin.git_stash, "s[T]ash" },
-				},
+		wk.add({
+			{ "<leader><leader>", builtin.buffers, desc = "Existing Buffers" },
+			{ "<leader>s", group = "[S]earch" },
+
+			-- [S]earch Core
+			{ "<leader>sf", builtin.find_files, desc = "[F]iles" },
+			{ "<leader>s:", builtin.commands, desc = "[:] (commands)" },
+			{ "<leader>sr", builtin.registers, desc = "[R]egisters" },
+			{ "<leader>sh", builtin.help_tags, desc = "[H]elp" },
+			{ "<leader>sk", builtin.keymaps, desc = "[K]eymaps" },
+			{ "<leader>sb", builtin.builtin, desc = "[B]uiltin" },
+			{ "<leader>sd", builtin.diagnostics, desc = "[D]iagnostics" },
+			{
+				"<leader>sn",
+				function()
+					builtin.find_files({ cwd = vim.fn.stdpath("config") })
+				end,
+				desc = "[N]eovim (config)",
 			},
+
+			-- [S]earch [S]tring (grep)
+			{ "<leader>ss", group = "[S]tring" },
+			{ "<leader>ssc", builtin.grep_string, desc = "[C]urrent" },
+			{ "<leader>ssg", builtin.live_grep, desc = "[G]rep" },
+			{ "<leader>ssb", builtin.current_buffer_fuzzy_find, desc = "[B]uffer" },
+
+			-- [S]earch [G]it
+			{ "<leader>sg", group = "[G]it" },
+			{ "<leader>sgc", builtin.git_commits, desc = "[C]ommits" },
+			{ "<leader>sgs", builtin.git_status, desc = "[S]tatus" },
+			{ "<leader>sgb", builtin.git_branches, desc = "[B]ranches" },
+			{ "<leader>sgt", builtin.git_stash, desc = "s[T]ash" },
 		})
 
 		-- Slightly advanced example of overriding default behavior and theme
