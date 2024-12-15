@@ -151,6 +151,7 @@ return {
 		"rust",
 		"scss",
 		"sql",
+		"templ",
 		"toml",
 		"vim",
 		"xml",
@@ -176,7 +177,8 @@ return {
 		"rust_analyzer",
 		"sqlls",
 		"texlab",
-		"tsserver",
+		"templ",
+		"ts_ls",
 		"yamlls",
 	},
 
