@@ -166,6 +166,7 @@ return {
 		"gopls",
 		"html",
 		"htmx",
+		"jinja_lsp",
 		"jdtls",
 		"jsonls",
 		"ltex",
@@ -200,6 +201,7 @@ return {
 			go = { "gofumpt", "goimports", "gomodifytags", "gotests" },
 			latex = { "latexindent" }, -- latex,
 			yaml = { "yamlfmt" },
+			jinja = { "djlint" },
 		},
 
 		linters = {
