@@ -128,6 +128,7 @@ function zshrc-post {
   fi
 
   mycompinit
+  source $__zsh_config_dir/completions/_az
 
   # Finish profiling by calling zprof.
   [[ "$ZPROFRC" -eq 1 ]] && zprof

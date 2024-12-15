@@ -1,0 +1,19 @@
+#compdef goenv
+
+if [[ ! -o interactive ]]; then
+    return
+fi
+
+_goenv() {
+  local completions
+
+  if [ "${#words}" -eq 2 ]; then
+    completions="$(goenv commands)"
+  else
+    completions="$(goenv completions ${words[2,-2]})"
+  fi
+
+  [[ -n "$completions" ]] && compadd -- "${(ps:\n:)completions}"
+}
+
+_goenv "$@"
