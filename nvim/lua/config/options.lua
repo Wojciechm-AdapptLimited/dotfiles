@@ -6,6 +6,9 @@ return {
 		confirm = true, -- confirm if to save changes before exiting modified buffer
 		cursorline = true, -- highlight the current line
 		expandtab = true, -- use spaces instead of tabs
+		foldmethod = "expr", -- set the fold method
+		foldnestmax = 1, -- set the maximum fold nesting
+		foldlevelstart = 0, -- set the fold level
 		hidden = true, -- enable modified buffers in the background
 		history = 500, -- use the "history" option to set the number of remembered commands from the Command mode
 		hlsearch = true, -- set highlight on search

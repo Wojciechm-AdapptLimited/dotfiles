@@ -118,5 +118,8 @@ return {
 		-- 		previewer = false,
 		-- 	}))
 		-- end, "[/] Fuzzily search in current buffer")
+
+		-- Disable folding in Telescope's result window.
+		vim.api.nvim_create_autocmd("FileType", { pattern = "TelescopeResults", command = [[setlocal nofoldenable]] })
 	end,
 }

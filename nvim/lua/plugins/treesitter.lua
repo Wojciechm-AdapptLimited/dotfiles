@@ -27,6 +27,7 @@ return {
 
 		require("nvim-ts-autotag").setup()
 
+		vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 		vim.treesitter.language.register("bash", "zsh")
 	end,
 }
