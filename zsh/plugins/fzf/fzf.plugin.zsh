@@ -55,7 +55,7 @@ function fzf_setup_using_base_dir() {
 
   # Key bindings
   if [[ "$DISABLE_FZF_KEY_BINDINGS" != "true" ]]; then
-    source "${fzf_shell}/key-bindings-custom.zsh"
+    source "${fzf_shell}/key-bindings.zsh"
   fi
 }
 
