@@ -3,3 +3,5 @@
 .zcompdump
 .zcompcache/
 lazy-lock.json
+.DS_Store
+*.kdl.bak*
