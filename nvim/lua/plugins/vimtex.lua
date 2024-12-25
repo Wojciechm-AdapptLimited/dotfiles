@@ -13,6 +13,13 @@ return {
 		g.vimtex_view_skim_activate = 1
 
 		g.vimtex_compiler_method = "tectonic"
+		g.vimtex_compiler_tectonic = {
+			options = {
+				"--keep-logs",
+				"--synctex",
+				'-Z shell-escape-cwd="."',
+			},
+		}
 		g.vimtex_mappings_enabled = false
 
 		-- Do not auto open quickfix on compile errors
