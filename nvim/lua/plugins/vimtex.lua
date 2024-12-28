@@ -32,6 +32,11 @@ return {
 			show_help = 0,
 		}
 
+		g.vimtex_grammar_textidote = {
+			jar = "/Users/wojciech/.local/bin/textidote.jar",
+			args = { "--check", "en" },
+		}
+
 		-- Latex warnings to ignore
 		g.vimtex_quickfix_ignore_filters = {
 			"Command terminated with space",
