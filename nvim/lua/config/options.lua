@@ -156,6 +156,7 @@ return {
 		"vim",
 		"xml",
 		"yaml",
+		"zig",
 	},
 
 	lsp_servers = {
@@ -166,9 +167,10 @@ return {
 		"gopls",
 		"html",
 		"htmx",
-		"jinja_lsp",
 		"jdtls",
+		"jinja_lsp",
 		"jsonls",
+		"lemminx",
 		"ltex",
 		"lua_ls",
 		"marksman",
@@ -177,10 +179,11 @@ return {
 		"r_language_server",
 		"rust_analyzer",
 		"sqlls",
-		"texlab",
 		"templ",
+		"texlab",
 		"ts_ls",
 		"yamlls",
+		"zls",
 	},
 
 	tools = {
@@ -202,6 +205,7 @@ return {
 			latex = { "latexindent" }, -- latex,
 			yaml = { "yamlfmt" },
 			jinja = { "djlint" },
+			xml = { "xmlformatter" },
 		},
 
 		linters = {
