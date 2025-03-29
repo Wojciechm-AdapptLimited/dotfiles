@@ -7,7 +7,8 @@ return {
 		cursorline = true, -- highlight the current line
 		expandtab = true, -- use spaces instead of tabs
 		foldmethod = "expr", -- set the fold method
-		foldnestmax = 1, -- set the maximum fold nesting
+		foldnestmax = 2, -- set the maximum fold nesting
+		foldlevel = 99, -- set the minimum level the fold will be closed by default
 		foldlevelstart = 0, -- set the fold level
 		hidden = true, -- enable modified buffers in the background
 		history = 500, -- use the "history" option to set the number of remembered commands from the Command mode
@@ -206,6 +207,7 @@ return {
 			yaml = { "yamlfmt" },
 			jinja = { "djlint" },
 			xml = { "xmlformatter" },
+			zig = { "zigfmt" },
 		},
 
 		linters = {
