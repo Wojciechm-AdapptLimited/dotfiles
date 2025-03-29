@@ -69,7 +69,7 @@ __zig_build() {
 
 _zig() {
   local __zig_exe
-  local -a __zig_commands
+  typeset -a __zig_commands
   __zig_commands=(
     'build:Build project from build.zig'
     'fetch:Copy a package into global cache and print its hash'

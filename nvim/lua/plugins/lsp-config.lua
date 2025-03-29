@@ -131,6 +131,9 @@ return {
 		local mr = require("mason-registry")
 
 		local function install(tool)
+			if not mr.has_package(tool) then
+				return
+			end
 			local p = mr.get_package(tool)
 			if not p:is_installed() then
 				p:install()
