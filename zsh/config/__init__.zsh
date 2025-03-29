@@ -62,6 +62,10 @@ if (( $#_brewcmd )); then
 fi
 unset _brewcmd
 
+# Setup GPG
+GPG_TTY=$(tty)
+export GPG_TTY
+
 # Build remaining path.
 path=(
   $HOME/{,s}bin(N)
@@ -129,6 +133,7 @@ function zshrc-post {
 
   mycompinit
   source $__zsh_config_dir/completions/_az
+  compdef _gnu_generic fzf
 
   # Finish profiling by calling zprof.
   [[ "$ZPROFRC" -eq 1 ]] && zprof
