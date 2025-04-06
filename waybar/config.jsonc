@@ -1,0 +1,263 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 30, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    "margin": "4 8",
+    // Choose the order of the modules
+    "modules-left": [
+        "hyprland/workspaces",
+        "mpd"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "keyboard-state",
+        "idle_inhibitor",
+        "wireplumber",
+        "bluetooth",
+        "network",
+        "group/hardware",
+        "group/bat",
+        "clock",
+        "group/power-menu"
+    ],
+    // Modules configuration
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "show-special": true,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "󰣇",
+            "2": "󰖟",
+            "3": "",
+            "4": "󰐌",
+            "5": "󰭹",
+            "special": "󰓏",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
+    },
+    "mpd": {
+        "format": "    {artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) {stateIcon}",
+        "format-stopped": "󰝛    Stopped",
+        "unknown-tag": "N/A",
+        "interval": 5,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "MPD {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}"
+    },
+    "hyprland/window": {
+        "max-length": 60
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "tooltip-format-activated": "No idle",
+        "tooltip-format-deactivated": "",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "keyboard-state": {
+        "capslock": true,
+        "format": "{icon}",
+        "format-icons": {
+            "locked": "󰘲",
+            "unlocked": ""
+        }
+    },
+    "wireplumber": {
+        "scroll-step": 1, // %, can be a float
+        "format": "{icon}",
+        "format-muted": "",
+        "format-icons": [
+            "",
+            "",
+            ""
+        ],
+        "tooltip": true,
+        "tooltip-format": "󰓃  {node_name} ({volume}%)"
+    },
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "⚠",
+        "format-off": "󰂲",
+        "format-on": "",
+        "format-connected": "󰂱",
+        "tooltip-format": "  {controller_alias} via {controller_address}",
+        "tooltip-format-connected": "  {controller_alias} via {controller_address}\n{num_connections} connected devices\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "\n󰂱   {device_alias} ({device_address})"
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "󰖩",
+        "format-ethernet": "",
+        "format-linked": "󰌘",
+        "format-disconnected": "⚠",
+        // "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "tooltip-format-wifi": "󰛳  {ifname} via {gwaddr}\n󰖩  {essid} ({signalStrength}%)\n {bandwidthUpBits}  {bandwidthDownBits}",
+        "tooltip-format-ethernet": "󰛳  {ifname} via {gwaddr}\n {bandwidthUpBits}  {bandwidthDownBits}",
+        "tooltip-format-disconnected": "⚠ Disconnected"
+    },
+    "group/hardware": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500
+        },
+        "modules": [
+            "custom/stats",
+            "cpu",
+            "memory",
+            "temperature",
+            "disk",
+            "backlight"
+        ]
+    },
+    "custom/stats": {
+        "format": "󰄨  Stats",
+        "tooltip": false
+    },
+    "cpu": {
+        "format": "  {usage}%",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "  {}%"
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        "tooltip": false,
+        "format": "{icon} {temperatureC}°C",
+        "format-critical": "  {temperatureC}°C",
+        "format-icons": [
+            "",
+            "",
+            ""
+        ]
+    },
+    "disk": {
+        "format": "  {percentage_used}%",
+        "tooltip-format": "{used} out of {total} on {path}",
+        "path": "/home"
+    },
+    "backlight": {
+        "format": "{icon}  {percent}%",
+        "tooltip": false,
+        "reverse-scrolling": true,
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "group/bat": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500
+        },
+        "modules": [
+            "battery",
+            "power-profiles-daemon"
+        ]
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}   {capacity}%",
+        "format-full": "{icon}  {capacity}%",
+        "format-charging": "󱐋   {capacity}%",
+        "format-plugged": "    {capacity}%",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+        }
+    },
+    "clock": {
+        "timezone": "Europe/Warsaw",
+        "format": "{:%a, %d %b %Y  %H:%M}",
+        "tooltip-format": "<tt><big>{calendar}</big></tt>"
+    },
+    "group/power-menu": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false
+        },
+        "modules": [
+            "custom/power",
+            "custom/lock",
+            "custom/hibernate",
+            "custom/reboot"
+        ]
+    },
+    "custom/lock": {
+        "format": "󰌾",
+        "tooltip": true,
+        "tooltip-format": "Lock the screen",
+        "on-click": "loginctl lock-session"
+    },
+    "custom/hibernate": {
+        "format": "󰒲",
+        "tooltip": true,
+        "tooltip-format": "Hibernate",
+        "on-click": "systemctl hibernate"
+    },
+    "custom/reboot": {
+        "format": "󰜉",
+        "tooltip": true,
+        "tooltip-format": "Reboot the system",
+        "on-click": "systemctl reboot"
+    },
+    "custom/power": {
+        "format": "⏻ ",
+        "tooltip": true,
+        "tooltip-format": "Shutdown the system",
+        "on-click": "shutdown now"
+    }
+}

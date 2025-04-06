@@ -1,0 +1,211 @@
+@import "mocha.css";
+
+* {
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family: "Noto Sans", FontAwesome, sans-serif;
+  font-size: 1rem;
+}
+
+window#waybar {
+  background-color: transparent;
+  color: @text;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+button {
+  /* Use box-shadow instead of border so the text isn't offset */
+  box-shadow: inset 0 -3px transparent;
+  /* Avoid rounded borders under each button name */
+  border: none;
+  border-radius: 0;
+}
+
+tooltip {
+  background-color: @base;
+  color: @text;
+  border-radius: 0.5rem;
+}
+
+tooltip label {
+  padding: 0 0.5rem;
+}
+
+/* left module */
+
+#workspaces {
+  border: 1px solid @rosewater;
+  border-radius: 1rem;
+  margin-right: 0.5rem;
+}
+
+#workspaces button {
+  padding: 0 0.5rem;
+  background-color: transparent;
+  color: @text;
+}
+
+#workspaces button:hover {
+  background: @rosewater;
+  color: @base;
+  opacity: 0.5;
+}
+
+#workspaces button.active {
+  background-color: @rosewater;
+  color: @base;
+}
+
+#workspaces button.active:hover {
+  opacity: 0.75;
+}
+
+#workspaces button:first-child {
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+#workspaces button:last-child {
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+#workspaces button:nth-child(2) {
+  padding-right: 10px;
+}
+
+#workspaces button.urgent {
+  color: @red;
+}
+
+#mpd {
+  background-color: transparent;
+  border: 1px solid @rosewater;
+  border-radius: 1rem;
+  color: @text;
+  padding: 0 0.75rem;
+}
+
+/* center module */
+
+#window {
+  margin: 0 4px;
+}
+
+/* right module */
+
+.modules-right {
+  background-color: transparent;
+  border: 1px solid @rosewater;
+  border-radius: 1rem;
+}
+
+#keyboard-state,
+#idle_inhibitor,
+#wireplumber,
+#bluetooth,
+#network,
+#custom-stats,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#battery,
+#power-profiles-daemon,
+#clock,
+#custom-power,
+#custom-lock,
+#custom-hibernate,
+#custom-reboot {
+  background-color: transparent;
+  padding: 0 0.5rem;
+  color: @text;
+}
+
+#keyboard-state {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+#keyboard-state > label.locked {
+  padding: 0 0.25rem;
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+#idle_inhibitor {
+  margin-left: 0;
+  padding-left: 0.5rem;
+  background-color: transparent;
+}
+
+#wireplumber {
+  padding: 0 0.75rem 0 0.25rem;
+}
+
+#wireplumber.muted {
+  color: @red;
+}
+
+#bluetooth {
+  padding: 0 0.25rem;
+}
+
+#network {
+  padding: 0 0.25rem;
+}
+
+#temperature.critical {
+  color: @red;
+}
+
+@keyframes blink {
+  to {
+    color: @red;
+  }
+}
+
+#battery {
+  padding: 0 0.25rem;
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#power-profiles-daemon {
+  padding-right: 1rem;
+}
+
+#power-profiles-daemon.performance {
+  background-color: @red;
+  color: #ffffff;
+}
+
+#power-profiles-daemon.balanced {
+  color: @sky;
+}
+
+#power-profiles-daemon.power-saver {
+  color: @green;
+}
+
+#clock {
+  padding: 0 0.25rem;
+}
+
+#power-menu {
+  margin-right: 0.5rem;
+}
+
+#custom-power {
+  color: @red;
+  padding-right: 0;
+}
