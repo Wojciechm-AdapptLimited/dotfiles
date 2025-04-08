@@ -35,7 +35,7 @@
         "format-icons": {
             "1": "󰣇",
             "2": "󰖟",
-            "3": "",
+            "3": "",
             "4": "󰐌",
             "5": "󰭹",
             "special": "󰓏",
@@ -89,6 +89,7 @@
     },
     "wireplumber": {
         "scroll-step": 1, // %, can be a float
+        "reverse-scrolling": true,
         "format": "{icon}",
         "format-muted": "",
         "format-icons": [
