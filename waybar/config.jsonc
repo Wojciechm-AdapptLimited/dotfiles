@@ -20,6 +20,7 @@
         "wireplumber",
         "bluetooth",
         "network",
+        "custom/vpn",
         "group/hardware",
         "group/bat",
         "clock",
@@ -45,7 +46,7 @@
         }
     },
     "mpd": {
-        "format": "    {artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) {stateIcon}",
+        "format": "    {artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})    {stateIcon}",
         "format-stopped": "󰝛    Stopped",
         "unknown-tag": "N/A",
         "interval": 5,
@@ -65,7 +66,8 @@
             "paused": "",
             "playing": ""
         },
-        "tooltip-format": "MPD {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}"
+        "tooltip-format": "MPD {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}",
+        "on-click": "ymuse"
     },
     "hyprland/window": {
         "max-length": 60
@@ -90,15 +92,16 @@
     "wireplumber": {
         "scroll-step": 1, // %, can be a float
         "reverse-scrolling": true,
-        "format": "{icon}",
-        "format-muted": "",
+        "format": "{icon} ",
+        "format-muted": " ",
         "format-icons": [
             "",
             "",
             ""
         ],
         "tooltip": true,
-        "tooltip-format": "󰓃  {node_name} ({volume}%)"
+        "tooltip-format": "󰓃  {node_name} ({volume}%)",
+        "on-click": "pwvucontrol"
     },
     "bluetooth": {
         "format": "",
@@ -107,8 +110,9 @@
         "format-on": "",
         "format-connected": "󰂱",
         "tooltip-format": "  {controller_alias} via {controller_address}",
-        "tooltip-format-connected": "  {controller_alias} via {controller_address}\n{num_connections} connected devices\n\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "\n󰂱   {device_alias} ({device_address})"
+        "tooltip-format-connected": "  {controller_alias} via {controller_address}\n{num_connections} connected devices:{device_enumerate}",
+        "tooltip-format-enumerate-connected": "\n󰂱   {device_alias} ({device_address})",
+        "on-click": "blueman-manager"
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
@@ -119,12 +123,20 @@
         // "format-alt": "{ifname}: {ipaddr}/{cidr}"
         "tooltip-format-wifi": "󰛳  {ifname} via {gwaddr}\n󰖩  {essid} ({signalStrength}%)\n {bandwidthUpBits}  {bandwidthDownBits}",
         "tooltip-format-ethernet": "󰛳  {ifname} via {gwaddr}\n {bandwidthUpBits}  {bandwidthDownBits}",
-        "tooltip-format-disconnected": "⚠ Disconnected"
+        "tooltip-format-disconnected": "⚠ Disconnected",
+        "on-click": "iwgtk"
+    },
+    "custom/vpn": {
+        "exec": "if expressvpnctl status | grep -q 'Connected to' ; then echo '󱔸'; else echo '󱔑'; fi",
+        "interval": 1,
+        "on-click": "/opt/expressvpn/bin/expressvpn-client",
+        "tooltip": false
     },
     "group/hardware": {
         "orientation": "horizontal",
         "drawer": {
-            "transition-duration": 500
+            "transition-duration": 500,
+            "transition-left-to-right": false
         },
         "modules": [
             "custom/stats",
@@ -137,7 +149,8 @@
     },
     "custom/stats": {
         "format": "󰄨  Stats",
-        "tooltip": false
+        "tooltip": false,
+        "on-click": "missioncenter"
     },
     "cpu": {
         "format": "  {usage}%",
@@ -259,6 +272,6 @@
         "format": "⏻ ",
         "tooltip": true,
         "tooltip-format": "Shutdown the system",
-        "on-click": "shutdown now"
+        "on-click": "systemctl poweroff"
     }
 }

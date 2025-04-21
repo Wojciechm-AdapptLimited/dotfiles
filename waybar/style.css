@@ -114,6 +114,7 @@ tooltip label {
 #battery,
 #power-profiles-daemon,
 #clock,
+#custom-vpn,
 #custom-power,
 #custom-lock,
 #custom-hibernate,
@@ -142,7 +143,7 @@ tooltip label {
 }
 
 #wireplumber {
-  padding: 0 0.75rem 0 0.25rem;
+  padding: 0 0 0 0.25rem;
 }
 
 #wireplumber.muted {
@@ -150,7 +151,7 @@ tooltip label {
 }
 
 #bluetooth {
-  padding: 0 0.25rem;
+  padding: 0 0.25rem 0 0;
 }
 
 #network {
