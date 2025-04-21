@@ -66,8 +66,8 @@
             "paused": "",
             "playing": ""
         },
-        "tooltip-format": "MPD {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}",
-        "on-click": "ymuse"
+        "tooltip-format": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}",
+        "on-click": "GTK_THEME=Adwaita:dark ymuse"
     },
     "hyprland/window": {
         "max-length": 60
