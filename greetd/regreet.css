@@ -1,0 +1,38 @@
+window {
+  background-color: #1e1e2e;
+}
+
+overlay > *:nth-child(2),
+overlay > *:nth-child(3) {
+  background-color: transparent;
+  border: none;
+}
+
+frame:nth-child(2) combobox button,
+frame:nth-child(2) entry {
+  background: transparent;
+  border: 1px solid #f5e0dc;
+  border-radius: 1rem;
+}
+
+frame:nth-child(2) button.toggle {
+  background: transparent;
+  border: none;
+}
+
+frame:nth-child(2) grid > box:last-child button,
+overlay > box:last-child button {
+  background: transparent;
+  border: 1px solid #f5e0dc;
+  border-radius: 1rem;
+}
+
+frame:nth-child(2) grid > box:last-child button:hover,
+overlay > box:last-child button:hover {
+  background: #f5e0dc;
+  color: #1e1e2e;
+}
+
+combobox .entry {
+  background: red;
+}
