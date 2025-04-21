@@ -16,6 +16,7 @@ export XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-/run/user/$(id -u)}
 export XDG_PROJECTS_HOME=${XDG_PROJECTS_HOME:-$HOME/Projects}
 export XDG_AREAS_HOME=${XDG_AREAS_HOME:-$HOME/Areas}
 export XDG_ARCHIVE_HOME=${XDG_ARCHIVE_HOME:-$HOME/Archive}
+export XDG_MUSIC_HOME=${XDG_MUSIC_HOME:-$HOME/Music}
 
 # Fish-like dirs
 : ${__zsh_config_dir:=${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}}
