@@ -55,10 +55,12 @@ __fzf_git_init() {
   for o in "$@"; do
     eval "fzf-git-$o-widget() { local result=\$(__fzf_git_${o}_widget | __fzf_git_join); zle reset-prompt; LBUFFER+=\$result }"
     eval "zle -N fzf-git-$o-widget"
-    for m in emacs vicmd viins; do
-      eval "bindkey -M $m '^g^${o[1]}' fzf-git-$o-widget"
-      eval "bindkey -M $m '^g${o[1]}' fzf-git-$o-widget"
-    done
+  done
+  for m in emacs vicmd viins; do
+    eval "bindkey -M $m '^B' fzf-git-branches-widget"
+    eval "bindkey -M $m '^F' fzf-git-files-widget"
+    eval "bindkey -M $m '^H' fzf-git-hashes-widget"
+    eval "bindkey -M $m '^S' fzf-git-stashes-widget"
   done
 }
 
@@ -196,7 +198,7 @@ __fzf_git_each_ref_widget() {
 __fzf_git_worktrees_widget() {
   __fzf_git_check || return
   git worktree list | __fzf_git_fzf \
-    --border-label '🌴 Worktrees ' \
+    --border-label '󰙅 Worktrees ' \
     --header 'CTRL-X (remove worktree)' \
     --bind 'ctrl-x:reload(git worktree remove {1} > /dev/null; git worktree list)' \
     --preview "
