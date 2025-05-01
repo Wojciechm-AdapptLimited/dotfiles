@@ -36,3 +36,9 @@ export LESS="${LESS:--g -i -M -R -S -w -z-4}"
 if [[ "$OSTYPE" == darwin* ]]; then
   export BROWSER=${BROWSER:-open}
 fi
+
+# zellij
+if [[ $TERM == alacritty ]] && (( $+commands[zellij] )); then
+  export ZELLIJ_AUTO_ATTACH=true
+  export ZELLIJ_AUTO_EXIT=true
+fi

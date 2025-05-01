@@ -84,14 +84,9 @@ export KEYTIMEOUT=1
 
 # Run this at the very end.
 function zshrc-post {
-  # Initialize zellij.
-  if (( $+commands[zellij] )); then
+  # Initialize zellij if it is installed and in alacritty.
+  if [[ $TERM == alacritty ]] && (( $+commands[zellij] )); then
     eval "$(zellij setup --generate-auto-start zsh)"
-  fi
-
-  # Initialize pyenv
-  if (( $+commands[pyenv] )); then
-    eval "$(pyenv init --path)"
   fi
 
   # Init bindings.
