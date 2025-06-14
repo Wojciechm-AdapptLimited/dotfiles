@@ -60,9 +60,9 @@ slider,
 }
 
 #box {
-  border-radius: 2px;
-  background: @surface1;
+  background: @base;
   padding: 32px;
+  border: 1px solid @surface0;
   border-radius: 0.5rem;
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.1),
@@ -70,7 +70,7 @@ slider,
 }
 
 #search {
-  background: @surface0;
+  background: @surface1;
   border-radius: 1rem;
   padding: 8px;
 }
