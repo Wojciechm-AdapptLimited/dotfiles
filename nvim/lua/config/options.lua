@@ -172,7 +172,6 @@ return {
 		"jinja_lsp",
 		"jsonls",
 		"lemminx",
-		"ltex",
 		"lua_ls",
 		"marksman",
 		"omnisharp",
