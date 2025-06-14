@@ -63,15 +63,13 @@ tooltip label {
 #workspaces button:first-child {
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
+  padding-right: 0.25rem;
 }
 
 #workspaces button:last-child {
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
-}
-
-#workspaces button:nth-child(2) {
-  padding-right: 10px;
+  padding-left: 0.25rem;
 }
 
 #workspaces button.urgent {
@@ -143,7 +141,7 @@ tooltip label {
 }
 
 #wireplumber {
-  padding: 0 0 0 0.25rem;
+  padding-left: 0;
 }
 
 #wireplumber.muted {

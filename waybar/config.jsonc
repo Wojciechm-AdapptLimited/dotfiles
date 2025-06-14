@@ -46,21 +46,21 @@
         }
     },
     "mpd": {
-        "format": "    {artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})    {stateIcon}",
-        "format-stopped": "󰝛    Stopped",
+        "format": " {artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) {stateIcon}",
+        "format-stopped": "󰝛 Stopped",
         "unknown-tag": "N/A",
         "interval": 5,
         "consume-icons": {
-            "on": " "
+            "on": ""
         },
         "random-icons": {
-            "on": " "
+            "on": ""
         },
         "repeat-icons": {
-            "on": " "
+            "on": ""
         },
         "single-icons": {
-            "on": "1 "
+            "on": "1"
         },
         "state-icons": {
             "paused": "",
@@ -77,8 +77,8 @@
         "tooltip-format-activated": "No idle",
         "tooltip-format-deactivated": "",
         "format-icons": {
-            "activated": "",
-            "deactivated": ""
+            "activated": "󰌾",
+            "deactivated": "󰌿"
         }
     },
     "keyboard-state": {
@@ -92,15 +92,15 @@
     "wireplumber": {
         "scroll-step": 1, // %, can be a float
         "reverse-scrolling": true,
-        "format": "{icon} ",
-        "format-muted": " ",
+        "format": "{icon}",
+        "format-muted": "󰝟",
         "format-icons": [
-            "",
-            "",
-            ""
+            "󰕿",
+            "󰖀",
+            "󰕾"
         ],
         "tooltip": true,
-        "tooltip-format": "󰓃  {node_name} ({volume}%)",
+        "tooltip-format": "󰓃 {node_name} ({volume}%)",
         "on-click": "pwvucontrol"
     },
     "bluetooth": {
@@ -109,9 +109,9 @@
         "format-off": "󰂲",
         "format-on": "",
         "format-connected": "󰂱",
-        "tooltip-format": "  {controller_alias} via {controller_address}",
-        "tooltip-format-connected": "  {controller_alias} via {controller_address}\n{num_connections} connected devices:{device_enumerate}",
-        "tooltip-format-enumerate-connected": "\n󰂱   {device_alias} ({device_address})",
+        "tooltip-format": " {controller_alias} via {controller_address}",
+        "tooltip-format-connected": " {controller_alias} via {controller_address}\n{num_connections} connected devices:{device_enumerate}",
+        "tooltip-format-enumerate-connected": "\n󰂱 {device_alias} ({device_address})",
         "on-click": "blueman-manager"
     },
     "network": {
@@ -121,8 +121,8 @@
         "format-linked": "󰌘",
         "format-disconnected": "⚠",
         // "format-alt": "{ifname}: {ipaddr}/{cidr}"
-        "tooltip-format-wifi": "󰛳  {ifname} via {gwaddr}\n󰖩  {essid} ({signalStrength}%)\n {bandwidthUpBits}  {bandwidthDownBits}",
-        "tooltip-format-ethernet": "󰛳  {ifname} via {gwaddr}\n {bandwidthUpBits}  {bandwidthDownBits}",
+        "tooltip-format-wifi": "󰛳 {ifname} via {gwaddr}\n󰖩 {essid} ({signalStrength}%)\n {bandwidthUpBits}  {bandwidthDownBits}",
+        "tooltip-format-ethernet": "󰛳 {ifname} via {gwaddr}\n {bandwidthUpBits}  {bandwidthDownBits}",
         "tooltip-format-disconnected": "⚠ Disconnected",
         "on-click": "iwgtk"
     },
@@ -148,16 +148,16 @@
         ]
     },
     "custom/stats": {
-        "format": "󰄨  Stats",
+        "format": "󰄨 Stats",
         "tooltip": false,
         "on-click": "missioncenter"
     },
     "cpu": {
-        "format": "  {usage}%",
+        "format": " {usage}%",
         "tooltip": false
     },
     "memory": {
-        "format": "  {}%"
+        "format": " {}%"
     },
     "temperature": {
         // "thermal-zone": 2,
@@ -165,7 +165,7 @@
         "critical-threshold": 80,
         "tooltip": false,
         "format": "{icon} {temperatureC}°C",
-        "format-critical": "  {temperatureC}°C",
+        "format-critical": " {temperatureC}°C",
         "format-icons": [
             "",
             "",
@@ -173,12 +173,12 @@
         ]
     },
     "disk": {
-        "format": "  {percentage_used}%",
+        "format": " {percentage_used}%",
         "tooltip-format": "{used} out of {total} on {path}",
         "path": "/home"
     },
     "backlight": {
-        "format": "{icon}  {percent}%",
+        "format": "{icon} {percent}%",
         "tooltip": false,
         "reverse-scrolling": true,
         "format-icons": [
@@ -209,10 +209,10 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{icon}   {capacity}%",
-        "format-full": "{icon}  {capacity}%",
-        "format-charging": "󱐋   {capacity}%",
-        "format-plugged": "    {capacity}%",
+        "format": "{icon} {capacity}%",
+        "format-full": "{icon} {capacity}%",
+        "format-charging": "󱐋 {capacity}%",
+        "format-plugged": " {capacity}%",
         "format-icons": [
             "",
             "",
@@ -234,7 +234,7 @@
     },
     "clock": {
         "timezone": "Europe/Warsaw",
-        "format": "{:%a, %d %b %Y  %H:%M}",
+        "format": "{:%a, %d %b %Y %H:%M}",
         "tooltip-format": "<tt><big>{calendar}</big></tt>"
     },
     "group/power-menu": {
