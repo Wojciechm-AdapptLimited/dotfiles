@@ -4,7 +4,7 @@
 
 [background]
 # Path to the background image
-# path = ""
+path = "/usr/share/backgrounds/dark-cat-blurred.png"
 
 # How the background image covers the screen if the aspect ratio doesn't match
 # Available values: "Fill", "Contain", "Cover", "ScaleDown"
@@ -13,9 +13,14 @@
 fit = "Contain"
 
 [GTK]
-# Whether to use the dark theme
+# GTK theme settings
 application_prefer_dark_theme = true
+font_name = "BerkeleyMono Nerd Font Mono"
 
 [commands]
 reboot = [ "systemctl", "reboot" ]
 poweroff = [ "systemctl", "poweroff" ]
+
+[widget.clock]
+format = "%H:%M"
+
