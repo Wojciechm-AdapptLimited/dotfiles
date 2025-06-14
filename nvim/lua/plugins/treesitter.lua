@@ -29,5 +29,11 @@ return {
 
 		vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 		vim.treesitter.language.register("bash", "zsh")
+
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			desc = "Reload foldexpr on save",
+			group = vim.api.nvim_create_augroup("TS", { clear = true }),
+			command = "set foldmethod=expr",
+		})
 	end,
 }
