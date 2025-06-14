@@ -4,17 +4,17 @@ general.import = ["~/.config/alacritty/themes/catppuccin-mocha.toml"]
 size = 14.0
 
 [font.bold]
-family = "CaskaydiaCove Nerd Font"
+family = "BerkeleyMono Nerd Font Mono"
 style = "Bold"
 
 [font.bold_italic]
-family = "CaskaydiaCove Nerd Font"
-style = "Bold Italic"
+family = "BerkeleyMono Nerd Font Mono"
+style = "Bold Oblique"
 
 [font.italic]
-family = "CaskaydiaCove Nerd Font"
-style = "Italic"
+family = "BerkeleyMono Nerd Font Mono"
+style = "Oblique"
 
 [font.normal]
-family = "CaskaydiaCove Nerd Font"
+family = "BerkeleyMono Nerd Font Mono"
 style = "Regular"
