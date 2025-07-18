@@ -277,6 +277,14 @@ return {
 		zls = {},
 	},
 
+	lsp_additional_capabilities = {
+		workspace = {
+			didChangeWatchedFiles = {
+				dynamicRegistration = true, -- enable dynamic registration for file watching
+			},
+		},
+	},
+
 	tools = {
 		formatters = {
 			python = { "black" },

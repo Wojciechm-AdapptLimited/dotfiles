@@ -41,57 +41,19 @@ return {
 				end
 
 				wk.add({
+					-- [G]oto (To jump back, press <C-T>)
 					{ "<leader>g", group = "[G]oto" },
-
-					-- Jump to the definition of the word under your cursor.
-					--  This is where a variable was first declared, or where a function is defined, etc.
-					--  To jump back, press <C-T>.
 					{ "<leader>gd", builtin.lsp_definitions, desc = "[D]efinition" },
-
-					-- WARN: This is not Goto Definition, this is Goto Declaration.
-					--  For example, in C this would take you to the header
 					{ "<leader>gD", vim.lsp.buf.declaration, desc = "[D]eclaration" },
-
-					-- Find references for the word under your cursor.
 					{ "<leader>gr", builtin.lsp_references, desc = "[R]eferences" },
-
-					-- Jump to the implementation of the word under your cursor.
-					--  Useful when your language has ways of declaring types without an actual implementation.
 					{ "<leader>gi", builtin.lsp_implementations, desc = "[I]mplementation" },
-
-					-- Jump to the type of the word under your cursor.
-					--  Useful when you're not sure what type a variable is and you want to see
-					--  the definition of its *type*, not where it was *defined*.
 					{ "<leader>gt", builtin.lsp_type_definitions, desc = "[T]ype" },
-
-					-- Find all supertypes of the word under your cursor.
 					{ "<leader>gh", vim.lsp.buf.typehierarchy, desc = "[H]ierarchy" },
-				})
 
-				wk.add({
+					-- [C]ode actions
 					{ "<leader>c", group = "[C]ode" },
-
-					-- Rename the variable under your cursor
-					--  Most Language Servers support renaming across files, etc.
 					{ "<leader>cr", vim.lsp.buf.rename, desc = "[R]ename" },
-
-					-- Execute a code action, usually your cursor needs to be on top of an error
-					-- or a suggestion from your LSP for this to activate.
 					{ "<leader>ca", vim.lsp.buf.code_action, desc = "[A]ction" },
-				})
-
-				wk.add({
-					{ "<leader>sc", group = "[C]ode" },
-					-- Fuzzy find all the symbols in your current document.
-					--  Symbols are things like variables, functions, types, etc.
-					{ "<leader>scd", builtin.lsp_document_symbols, desc = "[D]ocument" },
-
-					-- Fuzzy find all the symbols in your current workspace
-					--  Similar to document symbols, except searches over your whole project.
-					{ "<leader>scw", builtin.lsp_dynamic_workspace_symbols, desc = "[W]orkspace" },
-
-					-- Fuzzy find all the symbols in your current workspace using treesitter
-					{ "<leader>sct", builtin.treesitter, desc = "[T]reesitter" },
 				})
 
 				-- Opens a popup that displays documentation about the word under your cursor
@@ -155,6 +117,7 @@ return {
 		--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
 		--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		capabilities = vim.tbl_deep_extend("force", capabilities, conf.lsp_additional_capabilities)
 		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 		for server_name, server in pairs(conf.lsp_servers) do
