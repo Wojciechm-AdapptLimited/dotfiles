@@ -118,13 +118,6 @@ return {
 			end,
 		})
 
-		-- LSP servers and clients are able to communicate to each other what features they support.
-		--  By default, Neovim doesn't support everything that is in the LSP Specification.
-		--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-		--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-
 		require("mason").setup()
 
 		-- ensure tools (except LSPs) are installed
@@ -140,7 +133,7 @@ return {
 			end
 		end
 
-		local function ensure_installed(tools)
+		for _, tools in ipairs(conf.tools) do
 			for _, tool in pairs(tools) do
 				if type(tool) == "table" then
 					for _, subtool in ipairs(tool) do
@@ -152,23 +145,28 @@ return {
 			end
 		end
 
-		ensure_installed(conf.tools.formatters)
-		ensure_installed(conf.tools.linters)
-
 		-- install LSPs
 		require("mason-lspconfig").setup({
-			ensure_installed = conf.lsp_servers,
-			handlers = {
-				function(server_name)
-					local server = conf.lsp_servers[server_name] or {}
-
-					-- This handles overriding only values explicitly passed
-					-- by the server configuration above. Useful when disabling
-					-- certain features of an LSP (for example, turning off formatting for tsserver)
-					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-					require("lspconfig")[server_name].setup(server)
-				end,
-			},
+			ensure_installed = vim.tbl_keys(conf.lsp_servers),
 		})
+
+		-- LSP servers and clients are able to communicate to each other what features they support.
+		--  By default, Neovim doesn't support everything that is in the LSP Specification.
+		--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
+		--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+
+		for server_name, server in pairs(conf.lsp_servers) do
+			-- This handles overriding only values explicitly passed
+			-- by the server configuration above. Useful when disabling
+			-- certain features of an LSP (for example, turning off formatting for tsserver)
+			server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+			vim.lsp.config(server_name, {
+				capabilities = server.capabilities,
+				filetypes = server.filetypes,
+				settings = server.settings,
+			})
+		end
 	end,
 }

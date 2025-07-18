@@ -12,9 +12,11 @@ return {
 		"windwp/nvim-ts-autotag",
 	},
 	config = function()
+		local n = 0
+
 		require("nvim-treesitter.configs").setup({
 			modules = {},
-			ensure_installed = conf.parsers,
+			ensure_installed = vim.tbl_keys(conf.parsers),
 			ignore_install = {},
 			auto_install = true,
 			sync_install = false,
@@ -28,7 +30,12 @@ return {
 		require("nvim-ts-autotag").setup()
 
 		vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-		vim.treesitter.language.register("bash", "zsh")
+
+		for lang, exts in pairs(conf.parsers) do
+			for _, ext in ipairs(exts) do
+				vim.treesitter.language.register(lang, ext)
+			end
+		end
 
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			desc = "Reload foldexpr on save",

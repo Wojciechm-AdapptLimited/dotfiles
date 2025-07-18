@@ -14,6 +14,9 @@ local function init()
 	-- auto commands
 	require("config.autocmds")
 
+	-- file type patches
+	require("config.ft")
+
 	-- lazy.nvim
 	require("config.lazy")
 
