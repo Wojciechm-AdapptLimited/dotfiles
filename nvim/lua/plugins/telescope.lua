@@ -5,12 +5,10 @@ local conf = vim.g.config
 return {
 	"nvim-telescope/telescope.nvim",
 	event = "VeryLazy",
-	branch = "0.1.x",
+	branch = "master",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"jvgrootveld/telescope-zoxide",
-		"nvim-telescope/telescope-ui-select.nvim",
-		{ -- If encountering errors, see telescope-fzf-native README for install instructions
+		{
 			"nvim-telescope/telescope-fzf-native.nvim",
 
 			-- `build` is used to run some command when the plugin is installed/updated.
@@ -27,7 +25,11 @@ return {
 		-- Useful for getting pretty icons, but requires special font.
 		--  If you already have a Nerd Font, or terminal set up with fallback fonts
 		--  you can enable this
-		{ "nvim-tree/nvim-web-devicons" },
+		"nvim-tree/nvim-web-devicons",
+
+		-- Telescope extensions
+		"nvim-telescope/telescope-ui-select.nvim",
+		"nvim-telescope/telescope-file-browser.nvim",
 	},
 	config = function()
 		local telescope = require("telescope")
@@ -44,7 +46,7 @@ return {
 				file_ignore_patterns = conf.ingnored_files,
 			},
 			pickers = {
-				find_files = { hidden = false },
+				find_files = { hidden = true },
 				oldfiles = { cwd_only = true },
 				buffers = {
 					ignore_current_buffer = true,
@@ -73,9 +75,11 @@ return {
 		-- Enable telescope extensions, if they are installed
 		pcall(telescope.load_extension, "fzf")
 		pcall(telescope.load_extension, "ui-select")
+		pcall(telescope.load_extension, "file_browser")
 
 		wk.add({
 			{ "<leader><leader>", builtin.buffers, desc = "Existing Buffers" },
+			{ "<leader>f", telescope.extensions.file_browser.file_browser, desc = "[F]ile Browser" },
 			{ "<leader>s", group = "[S]earch" },
 
 			-- [S]earch Core
@@ -106,18 +110,22 @@ return {
 			{ "<leader>sgs", builtin.git_status, desc = "[S]tatus" },
 			{ "<leader>sgb", builtin.git_branches, desc = "[B]ranches" },
 			{ "<leader>sgt", builtin.git_stash, desc = "s[T]ash" },
-		})
 
-		-- Slightly advanced example of overriding default behavior and theme
-		-- map("/", function()
-		-- 	-- You can pass additional configuration to telescope to change theme, layout, etc.
-		-- 	builtin.current_buffer_fuzzy_find(themes.get_dropdown({
-		-- 		winblend = 10,
-		-- 		previewer = false,
-		-- 	}))
-		-- end, "[/] Fuzzily search in current buffer")
+			-- [S]earch [C]ode
+			{ "<leader>sc", group = "[C]ode" },
+			{ "<leader>scd", builtin.lsp_document_symbols, desc = "[D]ocument" },
+			{ "<leader>scw", builtin.lsp_dynamic_workspace_symbols, desc = "[W]orkspace" },
+		})
 
 		-- Disable folding in Telescope's result window.
 		vim.api.nvim_create_autocmd("FileType", { pattern = "TelescopeResults", command = [[setlocal nofoldenable]] })
+
+		-- Enable wrapping in Telescope's preview window.
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "TelescopePreviewerLoaded",
+			callback = function()
+				vim.wo.wrap = true
+			end,
+		})
 	end,
 }
