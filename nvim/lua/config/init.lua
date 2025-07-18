@@ -3,6 +3,9 @@ local function init()
 	vim.g.mapleader = " "
 	vim.g.maplocalleader = " "
 
+	-- setup additional global variables
+	vim.g.health = { style = "float" }
+
 	-- load config
 	vim.g.config = require("config.options")
 

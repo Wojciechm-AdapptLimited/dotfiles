@@ -3,12 +3,6 @@ local map = vim.keymap.set
 -- clear search highlight by pressing <Esc> in Normal mode
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
 
--- diagnostic keymaps
-map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
-map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
-map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
-
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- window keymaps

@@ -36,10 +36,6 @@ return {
 				local wk = require("which-key")
 				local builtin = require("telescope.builtin")
 
-				local map = function(keys, func, desc)
-					vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
-				end
-
 				wk.add({
 					-- [G]oto (To jump back, press <C-T>)
 					{ "<leader>g", group = "[G]oto" },
@@ -55,10 +51,6 @@ return {
 					{ "<leader>cr", vim.lsp.buf.rename, desc = "[R]ename" },
 					{ "<leader>ca", vim.lsp.buf.code_action, desc = "[A]ction" },
 				})
-
-				-- Opens a popup that displays documentation about the word under your cursor
-				--  See `:help K` for why this keymap
-				map("K", vim.lsp.buf.hover, "Hover Documentation")
 
 				-- The following two autocommands are used to highlight references of the
 				-- word under your cursor when your cursor rests there for a little while.
