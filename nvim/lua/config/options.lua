@@ -24,7 +24,7 @@ return {
 		shiftround = true, -- round indent
 		shiftwidth = 2, -- set the number of spaces inserted for each indentation
 		showmode = false, -- hide the mode, since it is already in the status line
-		showtabline = 2, -- always show tabs: 0 never, 1 only if at least two tab pages, 2 always
+		showtabline = 1, -- always show tabs: 0 never, 1 only if at least two tab pages, 2 always
 		sidescrolloff = 5, -- set the minimal number of columns to scroll horizontally
 		signcolumn = "yes", -- show the signcolumn, otherwise it would shift the text each time
 		smartcase = true, -- don't ignore case with capitals
