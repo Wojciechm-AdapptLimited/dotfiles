@@ -11,6 +11,9 @@ disabled = true
 [buf]
 symbol = " "
 
+[bun]
+symbol = " "
+
 [c]
 symbol = " "
 
