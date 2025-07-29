@@ -245,7 +245,7 @@ return {
 		jsonls = {},
 		lemminx = {},
 		ltex_plus = {
-			filetypes = { "bib", "gitcommit", "markdown", "org", "text", "pandoc", "mail", "text" },
+			filetypes = { "bib", "gitcommit", "markdown", "org", "text", "pandoc", "mail", "tex" },
 		},
 		lua_ls = {
 			settings = {
@@ -302,7 +302,7 @@ return {
 			bibtex = { "bibtex-tidy" },
 			cs = { "csharpier" },
 			go = { "gofumpt", "goimports" },
-			latex = { "latexindent" },
+			tex = { "latexindent" },
 			yaml = { "yamlfmt" },
 			jinja = { "djlint" },
 			xml = { "xmlformatter" },
