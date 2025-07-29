@@ -1,7 +1,8 @@
-general.import = ["~/.config/alacritty/themes/catppuccin-mocha.toml"]
+[general]
+import = ["~/.config/alacritty/themes/catppuccin-mocha.toml"]
 
 [font]
-size = 14.0
+size = 16.0
 
 [font.bold]
 family = "BerkeleyMono Nerd Font Mono"
