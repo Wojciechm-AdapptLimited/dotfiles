@@ -24,6 +24,7 @@ return {
 				source = "always",
 			},
 			float = {
+				border = "rounded",
 				source = "always",
 			},
 			update_in_insert = true,
@@ -71,6 +72,10 @@ return {
 				end
 			end,
 		})
+
+		require("lspconfig.ui.windows").default_options = {
+			border = "rounded",
+		}
 
 		require("mason").setup()
 

@@ -57,7 +57,8 @@ return {
 		]],
 	},
 
-	theme = "catppuccin_mocha",
+	theme = "catppuccin",
+	themeflavour = "mocha", -- options: latte, frappe, macchiato, mocha
 
 	dev_path = "$HOME/Projects",
 
