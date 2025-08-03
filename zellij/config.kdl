@@ -243,7 +243,7 @@ themes {
     catppuccin-mocha-custom {
         text_unselected {
             base 205 214 244
-            background 24 24 37
+            background 30 30 46
             emphasis_0 250 179 135
             emphasis_1 137 220 235
             emphasis_2 166 227 161
@@ -258,7 +258,7 @@ themes {
             emphasis_3 245 194 231
         }
         ribbon_selected {
-            base 24 24 37
+            base 30 30 46
             // background 166 227 161
             background 245 224 220
             emphasis_0 243 139 168
@@ -267,7 +267,7 @@ themes {
             emphasis_3 137 180 250
         }
         ribbon_unselected {
-            base 24 24 37
+            base 30 30 46
             // background 205 214 244
             base 205 214 244
             background 166 173 200
@@ -294,7 +294,7 @@ themes {
         }
         table_cell_unselected {
             base 205 214 244
-            background 24 24 37
+            background 30 30 46
             emphasis_0 250 179 135
             emphasis_1 137 220 235
             emphasis_2 166 227 161
@@ -310,7 +310,7 @@ themes {
         }
         list_unselected {
             base 205 214 244
-            background 24 24 37
+            background 30 30 46
             emphasis_0 250 179 135
             emphasis_1 137 220 235
             emphasis_2 166 227 161
@@ -345,7 +345,7 @@ themes {
             base 166 227 161
             background 0
             emphasis_0 137 220 235
-            emphasis_1 24 24 37
+            emphasis_1 30 30 46
             emphasis_2 245 194 231
             emphasis_3 137 180 250
         }
