@@ -3,7 +3,7 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
   font-family: "BerkeleyMono Nerd Font Mono", monospace;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
 }
 
 window#waybar {

@@ -67,7 +67,7 @@
             "playing": ""
         },
         "tooltip-format": " {artist} - {album} - {title} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}",
-        "on-click": "GTK_THEME=Adwaita:dark ymuse"
+        "on-click": "ymuse"
     },
     "hyprland/window": {
         "max-length": 60
