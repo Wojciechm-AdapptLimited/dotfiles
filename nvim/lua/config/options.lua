@@ -177,7 +177,7 @@ return {
 		angularls = {},
 		arduino_language_server = {},
 		bashls = {
-			filetypes = { "sh", "bash", "zsh" }, -- specify filetypes for bashls
+			filetypes = { "sh", "bash" }, -- specify filetypes for bashls
 		},
 		buf_ls = {},
 		clangd = {},

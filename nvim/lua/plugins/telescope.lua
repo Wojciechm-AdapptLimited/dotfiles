@@ -33,6 +33,7 @@ return {
 	},
 	config = function()
 		local telescope = require("telescope")
+		local tconfig = require("telescope.config")
 		local actions = require("telescope.actions")
 		local builtin = require("telescope.builtin")
 		local themes = require("telescope.themes")
@@ -46,7 +47,9 @@ return {
 				file_ignore_patterns = conf.ingnored_files,
 			},
 			pickers = {
-				find_files = { hidden = true },
+				find_files = {
+					find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+				},
 				oldfiles = { cwd_only = true },
 				buffers = {
 					ignore_current_buffer = true,

@@ -77,7 +77,11 @@ return {
 			border = "rounded",
 		}
 
-		require("mason").setup()
+		require("mason").setup({
+			ui = {
+				border = "rounded",
+			},
+		})
 
 		-- ensure tools (except LSPs) are installed
 		local mr = require("mason-registry")
