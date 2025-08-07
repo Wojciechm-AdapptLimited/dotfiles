@@ -85,7 +85,7 @@ export KEYTIMEOUT=1
 # Run this at the very end.
 function zshrc-post {
   # Initialize zellij if it is installed and in alacritty.
-  if [[ $TERM == alacritty ]] && (( $+commands[zellij] )); then
+  if [[ $TERM == xterm-ghostty ]] && (( $+commands[zellij] )); then
     eval "$(zellij setup --generate-auto-start zsh)"
   fi
 

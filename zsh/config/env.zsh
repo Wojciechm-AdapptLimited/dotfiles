@@ -38,7 +38,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
 fi
 
 # zellij
-if [[ $TERM == alacritty ]] && (( $+commands[zellij] )); then
+if [[ $TERM == xterm-ghostty ]] && (( $+commands[zellij] )); then
   export ZELLIJ_AUTO_ATTACH=true
   export ZELLIJ_AUTO_EXIT=true
 fi

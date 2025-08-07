@@ -1,0 +1,82 @@
+mouse-scroll-multiplier = 0.5
+
+window-decoration = true
+window-padding-x = 4
+window-padding-y = 4,0
+
+theme = catppuccin-mocha
+font-family = "BerkeleyMono Nerd Font Mono"
+
+macos-titlebar-style = transparent
+
+shell-integration = zsh
+
+# Unbind CMD+... and CTRL+SHIFT+... keys so they will be forwarded to Zellij
+
+#tabs
+keybind = cmd+t=unbind
+keybind = ctrl+shift+t=unbind
+
+keybind = cmd+w=unbind
+keybind = ctrl+shift+w=unbind
+
+keybind = opt+1=unbind
+keybind = opt+2=unbind
+keybind = opt+3=unbind
+keybind = opt+4=unbind
+keybind = opt+5=unbind
+keybind = opt+6=unbind
+keybind = opt+7=unbind
+keybind = opt+8=unbind
+keybind = opt+9=unbind
+keybind = alt+1=unbind
+keybind = alt+2=unbind
+keybind = alt+3=unbind
+keybind = alt+4=unbind
+keybind = alt+5=unbind
+keybind = alt+6=unbind
+keybind = alt+7=unbind
+keybind = alt+8=unbind
+keybind = alt+9=unbind
+
+keybind = cmd+opt+left=unbind
+keybind = ctrl+shift+left=unbind
+
+keybind = cmd+opt+right=unbind
+keybind = ctrl+shift+right=unbind
+
+keybind = ctrl+shift+tab=unbind
+keybind = ctrl+tab=unbind
+keybind = ctrl+page_up=unbind
+keybind = ctrl+page_down=unbind
+
+# splits
+keybind = ctrl+shift+e=unbind
+keybind = ctrl+shift+o=unbind
+
+keybind = super+ctrl+shift+plus=unbind
+keybind = super+ctrl+shift+up=unbind
+keybind = super+ctrl+shift+down=unbind
+keybind = super+ctrl+shift+left=unbind
+keybind = super+ctrl+shift+right=unbind
+
+keybind = super+ctrl+left_bracket=unbind
+keybind = super+ctrl+right_bracket=unbind
+
+keybind = ctrl+alt+up=unbind
+keybind = ctrl+alt+down=unbind
+keybind = ctrl+alt+left=unbind
+keybind = ctrl+alt+right=unbind
+
+keybind = ctrl+shift+enter=unbind
+
+# windows
+keybind = cmd+n=unbind
+keybind = ctrl+shift+n=unbind
+
+keybind = opt+f4=unbind
+keybind = alt+f4=unbind
+
+# misc
+keybind = ctrl+enter=unbind
+keybind = ctrl+shift+q=unbind
