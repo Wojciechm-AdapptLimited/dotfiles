@@ -15,7 +15,11 @@ keybinds clear-defaults=true {
 
         bind "Ctrl Shift f" { ToggleFloatingPanes; }
         bind "Ctrl Shift n" { NewPane; }
-        bind "Ctrl Shift t" { NewTab; }
+        bind "Ctrl Shift t" {
+            NewTab {
+                name "zsh"
+            }
+        }
         bind "Ctrl Shift h" "Ctrl Shift Left" { MoveFocusOrTab "Left"; }
         bind "Ctrl Shift l" "Ctrl Shift Right" { MoveFocusOrTab "Right"; }
         bind "Ctrl Shift j" "Ctrl Shift Down" { MoveFocus "Down"; }
@@ -115,28 +119,28 @@ keybinds clear-defaults=true {
                 floating true
                 move_to_focused_tab true
             };
-            SwitchToMode "Normal"
+            SwitchToMode "Locked"
         }
         bind "c" {
             LaunchOrFocusPlugin "configuration" {
                 floating true
                 move_to_focused_tab true
             };
-            SwitchToMode "Normal"
+            SwitchToMode "Locked"
         }
         bind "p" {
             LaunchOrFocusPlugin "plugin-manager" {
                 floating true
                 move_to_focused_tab true
             };
-            SwitchToMode "Normal"
+            SwitchToMode "Locked"
         }
         bind "a" {
             LaunchOrFocusPlugin "zellij:about" {
                 floating true
                 move_to_focused_tab true
             };
-            SwitchToMode "Normal"
+            SwitchToMode "Locked"
         }
     }
     shared_except "locked" {
@@ -170,6 +174,13 @@ plugins {
 load_plugins {
   // "file:/path/to/my-plugin.wasm"
   // "https://example.com/my-plugin.wasm"
+}
+
+// UI configuration
+ui {
+    pane_frames {
+        rounded_corners true
+    }
 }
 
 // Choose what to do when zellij receives SIGTERM, SIGINT, SIGQUIT or SIGHUP
@@ -482,9 +493,9 @@ default_mode "locked"
 // Whether to show release notes on first version run
 // Default: true
 //
-// show_release_notes false
+show_release_notes false
 
 // Whether to show startup tips on session start
 // Default: true
 //
-// show_startup_tips false
+show_startup_tips false

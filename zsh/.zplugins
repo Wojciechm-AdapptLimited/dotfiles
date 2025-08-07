@@ -9,6 +9,7 @@ $ZSH_CUSTOM path:plugins/fnm
 $ZSH_CUSTOM path:plugins/go
 $ZSH_CUSTOM path:plugins/fzf
 $ZSH_CUSTOM path:plugins/pyenv
+$ZSH_CUSTOM path:plugins/zellij
 
 # Utilities
 mroth/evalcache

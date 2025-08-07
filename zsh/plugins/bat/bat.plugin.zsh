@@ -8,6 +8,5 @@ alias man='batman'
 export MANPAGER=env\ BATMAN_IS_BEING_MANPAGER=yes\ zsh\ \$\(which\ batman\)
 export MANROFFOPT=-c
 
-
 # alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
