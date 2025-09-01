@@ -4,6 +4,7 @@
 [user]
 	email = wojciech.maczka@protonmail.com
 	name = Wojciechm-AdapptLimited
+	signingkey = wojciech.maczka@protonmail.com
 
 [init]
 	defaultBranch = main
