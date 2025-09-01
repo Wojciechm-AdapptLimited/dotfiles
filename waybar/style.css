@@ -3,7 +3,7 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
   font-family: "BerkeleyMono Nerd Font Mono", monospace;
-  font-size: 1.15rem;
+  font-size: 0.95rem;
 }
 
 window#waybar {
@@ -122,10 +122,22 @@ tooltip label {
   color: @text;
 }
 
+#wireplumber.muted,
+#bluetooth.disabled,
+#bluetooth.off,
+#network.disconnected,
+#temperature.critical {
+  color: @red;
+}
+
 #keyboard-state {
   min-width: 0;
   margin: 0;
   padding: 0;
+}
+
+#keyboard-state > label {
+  margin-left: 0.25rem;
 }
 
 #keyboard-state > label.locked {
@@ -136,16 +148,12 @@ tooltip label {
 
 #idle_inhibitor {
   margin-left: 0;
-  padding-left: 0.5rem;
+  padding-left: 0.25rem;
   background-color: transparent;
 }
 
 #wireplumber {
   padding-left: 0;
-}
-
-#wireplumber.muted {
-  color: @red;
 }
 
 #bluetooth {
@@ -154,10 +162,6 @@ tooltip label {
 
 #network {
   padding: 0 0.25rem;
-}
-
-#temperature.critical {
-  color: @red;
 }
 
 @keyframes blink {
