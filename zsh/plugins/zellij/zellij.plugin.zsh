@@ -5,7 +5,7 @@ fi
 
 named=(nvim nvtop)
 
-zellij_pane_name_update() {
+_zellij_pane_name_update() {
   if [[ -z $ZELLIJ ]]; then
     return 0
   fi
@@ -27,7 +27,7 @@ zellij_pane_name_update() {
   command nohup zellij action rename-pane $pane_name >/dev/null 2>&1
 }
 
-zellij_tab_name_update() {
+_zellij_tab_name_update() {
   local tab_name="zsh"
 
   if [[ -n $1 ]]; then
@@ -41,12 +41,12 @@ zellij_tab_name_update() {
   command nohup zellij action rename-tab $tab_name >/dev/null 2>&1
 }
 
-zellij_tab_name_reset() {
+_zellij_tab_name_reset() {
   command nohup zellij action rename-tab zsh > /dev/null 2>&1
 }
 
-zellij_tab_name_reset
-zellij_pane_name_update
-chpwd_functions+=(zellij_pane_name_update)
-preexec_functions+=(zellij_tab_name_update)
-precmd_functions+=(zellij_tab_name_reset)
+_zellij_tab_name_reset
+_zellij_pane_name_update
+chpwd_functions+=(_zellij_pane_name_update)
+preexec_functions+=(_zellij_tab_name_update)
+precmd_functions+=(_zellij_tab_name_reset)
