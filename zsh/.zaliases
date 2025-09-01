@@ -5,6 +5,7 @@ alias help=run-help
 # It's time. Python2 is dead.
 if (( $+commands[python3] )) && ! (( $+commands[python] )); then
   alias python=python3
+  alias pip=pip3
 fi
 
 # Ensure envsubst command exists.
@@ -29,7 +30,7 @@ if ! (( $+commands[open] )); then
 fi
 
 if (( $+commands[eza] )); then
-  alias ls='eza --icons=always'
+  alias ls='eza --icons=always --colour=always --group-directories-first'
 fi
 
 if (( $+commands[rg] )); then
