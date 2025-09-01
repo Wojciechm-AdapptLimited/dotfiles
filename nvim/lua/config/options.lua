@@ -6,8 +6,9 @@ return {
 		confirm = true, -- confirm if to save changes before exiting modified buffer
 		cursorline = true, -- highlight the current line
 		expandtab = true, -- use spaces instead of tabs
+		foldexpr = "nvim_treesitter#foldexpr()", -- use treesitter for folding
 		foldmethod = "expr", -- set the fold method
-		foldnestmax = 2, -- set the maximum fold nesting
+		foldnestmax = 5, -- set the maximum fold nesting
 		foldlevel = 99, -- set the minimum level the fold will be closed by default
 		foldlevelstart = 0, -- set the fold level
 		hidden = true, -- enable modified buffers in the background
@@ -139,10 +140,9 @@ return {
 		dockerfile = {},
 		gitignore = {},
 		go = {},
-		html = {},
+		html = { "jinja" },
 		java = {},
 		javascript = {},
-		jinja = {},
 		jsdoc = {},
 		json = {},
 		latex = {},
@@ -191,6 +191,13 @@ return {
 		gopls = {},
 		html = {
 			filetypes = { "html", "htmlangular", "jinja", "razor", "templ" },
+			settings = {
+				html = {
+					suggest = {
+						html5 = true,
+					},
+				},
+			},
 		},
 		htmx = {
 			filetypes = {
@@ -242,7 +249,9 @@ return {
 		},
 		hyprls = {},
 		jdtls = {},
-		jinja_lsp = {},
+		jinja_lsp = {
+			filetypes = { "jinja", "python" },
+		},
 		jsonls = {},
 		lemminx = {},
 		ltex_plus = {

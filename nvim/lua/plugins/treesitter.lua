@@ -12,15 +12,13 @@ return {
 		"windwp/nvim-ts-autotag",
 	},
 	config = function()
-		local n = 0
-
 		require("nvim-treesitter.configs").setup({
 			modules = {},
 			ensure_installed = vim.tbl_keys(conf.parsers),
 			ignore_install = {},
-			auto_install = true,
+			auto_install = false,
 			sync_install = false,
-			highlight = { enable = true },
+			highlight = { enable = true, additional_vim_regex_highlighting = true },
 			indent = { enable = true },
 			endwise = { enable = true },
 			textobjects = { select = { enable = true } },
