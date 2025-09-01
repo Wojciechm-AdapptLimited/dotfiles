@@ -9,6 +9,7 @@ font-family = "BerkeleyMono Nerd Font Mono"
 
 macos-titlebar-style = transparent
 
+link-url = true
 shell-integration = zsh
 
 # Unbind CMD+... and CTRL+SHIFT+... keys so they will be forwarded to Zellij
