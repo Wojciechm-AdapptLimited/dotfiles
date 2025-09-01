@@ -1,0 +1,21 @@
+name = "screenshots"
+name_pretty = "Screenshots"
+icon = "camera-photo"
+global_search = true
+
+[[entries]]
+text = "View"
+action = "qview ~/Pictures/"
+
+[[entries]]
+text = "Screenshot region"
+action = "hyprshot -m region"
+
+[[entries]]
+text = "Screenshot window"
+action = "hyprshot -m window"
+
+[[entries]]
+text = "Screenshot screen"
+action = "hyprshot -m output"
+
