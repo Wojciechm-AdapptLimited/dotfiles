@@ -4,7 +4,7 @@ window-decoration = true
 window-padding-x = 4
 window-padding-y = 4,0
 
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 font-family = "BerkeleyMono Nerd Font Mono"
 
 macos-titlebar-style = transparent
