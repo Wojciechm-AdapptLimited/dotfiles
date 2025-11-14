@@ -301,29 +301,40 @@ return {
 
 	-- installed formatters by language
 	formatters = {
-		python = { "black" },
-		javascript = { "prettierd" },
+		bash = { "shfmt" },
+		bibtex = { "bibtex-tidy" },
+		buf = { "buf" },
+		cs = { "csharpier" },
+		css = { "prettierd" },
+		go = { "gofumpt", "goimports" },
 		html = { "prettierd" },
 		htmlangular = { "prettierd" },
-		css = { "prettierd" },
-		typescript = { "prettierd" },
+		javascript = { "prettierd" },
 		javascriptreact = { "prettierd" },
-		typescriptreact = { "prettierd" },
-		markdown = { "prettierd" },
-		lua = { "stylua" },
-		bash = { "shfmt" },
-		buf = { "buf" },
-		bibtex = { "bibtex-tidy" },
-		cs = { "csharpier" },
-		go = { "gofumpt", "goimports" },
-		tex = { "latexindent" },
-		yaml = { "yamlfmt" },
 		jinja = { "djlint" },
+		lua = { "stylua" },
+		markdown = { "prettierd" },
+		python = { "black" },
+		tex = { "latexindent" },
+		typescript = { "prettierd" },
+		typescriptreact = { "prettierd" },
 		xml = { "xmlformatter" },
+		yaml = { "yamlfmt" },
 	},
 
 	-- installed linters by language
 	linters = {
 		gitcommit = { "commitlint" },
+	},
+
+	-- installed debuggers
+	debuggers = {
+		bash = { "bash-debug-adapter" },
+		c = { "codelldb" },
+		cs = { "netcoredbg" },
+		go = { "delve" },
+		javascript = { "js-debug-adapter" },
+		lua = { "local-lua-debugger-vscode" },
+		python = { "debugpy" },
 	},
 }
