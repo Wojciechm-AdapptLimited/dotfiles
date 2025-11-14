@@ -1,8 +1,19 @@
 -- Autoformat
 
+local conf = vim.g.config
+
 return {
 	"stevearc/conform.nvim",
+	dependencies = {
+		-- Automatically install formatters to stdpath for neovim
+		{ "williamboman/mason.nvim", branch = "main" },
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+	},
 	config = function()
+		-- ensure formatters are installed
+		local installer = require("config.mason")
+		installer.ensure_installed(conf.formatters)
+
 		local conform = require("conform")
 
 		conform.setup({
@@ -14,7 +25,7 @@ return {
 				end
 				return { timeout_ms = 3000, lsp_format = "fallback" }
 			end,
-			formatters_by_ft = vim.g.config.tools.formatters,
+			formatters_by_ft = conf.formatters,
 		})
 
 		vim.api.nvim_create_user_command("ConformRun", function(args)

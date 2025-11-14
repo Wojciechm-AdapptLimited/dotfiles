@@ -83,31 +83,6 @@ return {
 			},
 		})
 
-		-- ensure tools (except LSPs) are installed
-		local mr = require("mason-registry")
-
-		local function install(tool)
-			if not mr.has_package(tool) then
-				return
-			end
-			local p = mr.get_package(tool)
-			if not p:is_installed() then
-				p:install()
-			end
-		end
-
-		for _, tools in ipairs(conf.tools) do
-			for _, tool in pairs(tools) do
-				if type(tool) == "table" then
-					for _, subtool in ipairs(tool) do
-						install(subtool)
-					end
-				else
-					install(tool)
-				end
-			end
-		end
-
 		-- install LSPs
 		require("mason-lspconfig").setup({
 			ensure_installed = vim.tbl_keys(conf.lsp_servers),

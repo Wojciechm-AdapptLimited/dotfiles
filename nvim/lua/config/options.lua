@@ -63,6 +63,15 @@ return {
 
 	dev_path = "$HOME/Projects",
 
+	ft = {
+		ext = {
+			jinja = { "jinja", "jinja2" },
+		},
+		pattern = {
+			htmlangular = { "*.component.html" }, -- map htmlangular to component.html
+		},
+	},
+
 	ignored_files = {
 		"%.7z",
 		"%.avi",
@@ -127,6 +136,17 @@ return {
 		"emoji",
 	},
 
+	lsp_additional_capabilities = {
+		workspace = {
+			didChangeWatchedFiles = {
+				dynamicRegistration = true, -- enable dynamic registration for file watching
+			},
+		},
+	},
+
+	-- tools to install
+
+	-- installed treesitter parsers
 	parsers = {
 		angular = {},
 		bash = { "sh", "zsh" },
@@ -164,15 +184,7 @@ return {
 		zig = {},
 	},
 
-	ft = {
-		ext = {
-			jinja = { "jinja", "jinja2" },
-		},
-		pattern = {
-			htmlangular = { "*.component.html" }, -- map htmlangular to component.html
-		},
-	},
-
+	-- installed LSP servers and their settings
 	lsp_servers = {
 		angularls = {},
 		arduino_language_server = {},
@@ -287,40 +299,31 @@ return {
 		zls = {},
 	},
 
-	lsp_additional_capabilities = {
-		workspace = {
-			didChangeWatchedFiles = {
-				dynamicRegistration = true, -- enable dynamic registration for file watching
-			},
-		},
+	-- installed formatters by language
+	formatters = {
+		python = { "black" },
+		javascript = { "prettierd" },
+		html = { "prettierd" },
+		htmlangular = { "prettierd" },
+		css = { "prettierd" },
+		typescript = { "prettierd" },
+		javascriptreact = { "prettierd" },
+		typescriptreact = { "prettierd" },
+		markdown = { "prettierd" },
+		lua = { "stylua" },
+		bash = { "shfmt" },
+		buf = { "buf" },
+		bibtex = { "bibtex-tidy" },
+		cs = { "csharpier" },
+		go = { "gofumpt", "goimports" },
+		tex = { "latexindent" },
+		yaml = { "yamlfmt" },
+		jinja = { "djlint" },
+		xml = { "xmlformatter" },
 	},
 
-	tools = {
-		formatters = {
-			python = { "black" },
-			javascript = { "prettierd" },
-			html = { "prettierd" },
-			htmlangular = { "prettierd" },
-			css = { "prettierd" },
-			typescript = { "prettierd" },
-			javascriptreact = { "prettierd" },
-			typescriptreact = { "prettierd" },
-			markdown = { "prettierd" },
-			lua = { "stylua" },
-			bash = { "shfmt" },
-			buf = { "buf" },
-			bibtex = { "bibtex-tidy" },
-			cs = { "csharpier" },
-			go = { "gofumpt", "goimports" },
-			tex = { "latexindent" },
-			yaml = { "yamlfmt" },
-			jinja = { "djlint" },
-			xml = { "xmlformatter" },
-			zig = { "zigfmt" },
-		},
-
-		linters = {
-			gitcommit = { "commitlint" },
-		},
+	-- installed linters by language
+	linters = {
+		gitcommit = { "commitlint" },
 	},
 }
