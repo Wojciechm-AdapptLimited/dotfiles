@@ -7,7 +7,10 @@ return {
 	event = "VeryLazy",
 	branch = "master",
 	dependencies = {
-		"nvim-lua/plenary.nvim",
+		{
+			"nvim-lua/plenary.nvim",
+			branch = "master",
+		},
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
 
@@ -33,7 +36,6 @@ return {
 	},
 	config = function()
 		local telescope = require("telescope")
-		local tconfig = require("telescope.config")
 		local actions = require("telescope.actions")
 		local builtin = require("telescope.builtin")
 		local themes = require("telescope.themes")
