@@ -21,14 +21,9 @@ return {
 			},
 			mouse_delay = 1000,
 		})
-
 		-- Opens a popup that displays documentation about the word under your cursor
 		--  See `:help K` for why this keymap
 		vim.keymap.set("n", "K", hover.hover, { desc = "Hover Documentation" })
-		vim.keymap.set("n", "<leader><Tab>", hover.hover, { desc = "Hover Documentation" })
-		vim.keymap.set("n", "<leader>d", function()
-			hover.hover({ providers = { "Diagnostics" } })
-		end, { desc = "Show [D]iagnostics" })
 
 		-- Mouse support
 		vim.keymap.set("n", "<MouseMove>", hover.hover_mouse, {})
